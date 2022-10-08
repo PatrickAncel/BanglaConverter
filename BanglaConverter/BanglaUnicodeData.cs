@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BanglaConverter
+{
+    internal static class BanglaUnicodeData
+    {
+        /// <summary>
+        /// Add this to each CodePoint value to get the correct Unicode code point.
+        /// </summary>
+        public const int CODE_POINT_OFFSET = 0x0900;
+
+        /// <summary>
+        /// The last two hex digits of the named Bangla characters.
+        /// </summary>
+        public enum CodePoint
+        {
+            // Full Vowels
+            FirstVowel = 0x85,
+            A = 0x86,
+            ShortI = 0x87,
+            LongI = 0x88,
+            ShortU = 0x89,
+            LongU = 0x8A,
+            RI = 0x8B,
+            E = 0x8F,
+            OI = 0x90,
+            O = 0x93,
+            OU = 0x94,
+            // Vowel Signs
+            AKar = 0xBE,
+            ShortIKar = 0xBF,
+            LongIKar = 0xC0,
+            ShortUKar = 0xC1,
+            LongUKar = 0xC2,
+            RIKar = 0xC3,
+            EKar = 0xC7,
+            OIKar = 0xC8,
+            OKar = 0xCB,
+            OUKar = 0xCC,
+            // Diacritics
+            Chandrabindu = 0x81,
+            Anusvar = 0x82,
+            Bisorgo = 0x83,
+            UnderDot = 0xBC,
+            Hosont = 0xCD,
+            // Misc.
+            KhondoT = 0xCE,
+            BDTaka = 0xF3,
+            Shunno = 0xE6,
+            // Consonants
+            K = 0x95,
+            G = 0x97,
+            UNG = 0x99,
+            C = 0x9A,
+            J = 0x9C,
+            IY = 0x9E,
+            RetroflexT = 0x9F,
+            RetroflexD = 0xA1,
+            MurdhonnoN = 0xA3,
+            DentalT = 0xA4,
+            DentalD = 0xA6,
+            DentalN = 0xA8,
+            P = 0xAA,
+            B = 0xAC,
+            M = 0xAE,
+            Y = 0xAF,
+            R = 0xB0,
+            L = 0xB2,
+            TalobboS = 0xB6,
+            MurdhonnoS = 0xB7,
+            DentalS = 0xB8,
+            H = 0xB9,
+            // A special value outside the Bangla Unicode block representing invalid input.
+            Invalid = 0x00
+        }
+
+        /// <summary>
+        /// Converts a sequence of partial code points into a string of Bangla characters.
+        /// </summary>
+        public static string MakeString(params CodePoint[] codePoints)
+        {
+            string text = "";
+            foreach (int codePoint in codePoints)
+            {
+                if (codePoint != (int)CodePoint.Invalid)
+                {
+                    // Gets the full code point of the character and adds it to the string.
+                    text += (char)(CODE_POINT_OFFSET + codePoint);
+                }
+            }
+            return text;
+        }
+    }
+}
