@@ -151,6 +151,8 @@
             // 
             // txtWorkArea
             // 
+            this.txtWorkArea.DetectUrls = false;
+            this.txtWorkArea.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtWorkArea.Location = new System.Drawing.Point(12, 12);
             this.txtWorkArea.Name = "txtWorkArea";
             this.txtWorkArea.Size = new System.Drawing.Size(689, 344);

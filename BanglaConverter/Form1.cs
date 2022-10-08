@@ -9,6 +9,9 @@ namespace BanglaConverter
             DisplayLanguageMode();
             HighlightActiveVowels();
 
+            DisplayVowelMode();
+            SetVowelLabels();
+
             KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
             KeypressProcessor.VowelModeChangeCallback += DisplayVowelMode;
             KeypressProcessor.VowelModeChangeCallback += SetVowelLabels;
@@ -40,7 +43,9 @@ namespace BanglaConverter
         {
             bool shift = KeypressProcessor.HasModifier(KeypressProcessor.KeyModifier.Shift);
             lblFirstVowel.BackColor = shift ? Color.White : Color.Gray;
+            //lblFirstVowel.BorderStyle = shift ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
             lblA.BackColor = shift ? Color.Gray : Color.White;
+            //lblA.BorderStyle = shift ? BorderStyle.FixedSingle : BorderStyle.Fixed3D;
         }
 
         private void DisplayVowelMode()
