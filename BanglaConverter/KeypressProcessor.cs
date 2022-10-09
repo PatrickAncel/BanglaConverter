@@ -121,6 +121,38 @@ namespace BanglaConverter
         };
 
         /// <summary>
+        /// Returns the list of active Bangla vowels (those that can be typed at the current moment)
+        /// based on whether the shift key is held. For example, if shift is held, the returned
+        /// list will include LongI (because typing I while holding shift produces LongI), but if
+        /// shift is not held, the list will include ShortI instead.
+        /// </summary>
+        public static List<CodePoint> GetActiveBanglaVowels()
+        {
+            List<CodePoint> activeVowels = new List<CodePoint>();
+
+            // If the language is English, there are no active Bangla vowels.
+            if (CurrentLanguageMode != LanguageMode.English)
+            {
+                bool shift = HasModifier(KeyModifier.Shift);
+
+                // Iterates over the vowel keys.
+                foreach (VowelKey vowelKey in vowelKeys.Values)
+                {
+                    CodePoint appropriateVowel = vowelKey.GetAppropriateVowel(shift);
+
+                    // The Invalid CodePoint means there is no appropriate vowel for the VowelKey.
+                    if (appropriateVowel != CodePoint.Invalid)
+                    {
+                        activeVowels.Add(appropriateVowel);
+                    }
+                }
+                
+            }
+
+            return activeVowels;
+        }
+
+        /// <summary>
         /// Returns true if the key pressed is A, I, U, E, or O; or if the key is R and shift was being held.
         /// </summary>
         private static bool KeyWasVowel(KeyEventArgs e)

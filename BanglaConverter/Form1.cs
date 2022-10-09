@@ -2,6 +2,14 @@ namespace BanglaConverter
 {
     public partial class MainForm : Form
     {
+
+        //private readonly Color InactiveBgColor = Color.FromArgb(50, 50, 50);
+        private readonly Color InactiveBgColor = Color.Gray;
+        private readonly Color ActiveBgColor = Color.White;
+
+        private readonly Color InactiveFgColor = Color.Gray;
+        private readonly Color ActiveFgColor = Color.Black;
+
         public MainForm()
         {
             InitializeComponent();
@@ -13,9 +21,13 @@ namespace BanglaConverter
             SetVowelLabels();
 
             KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
+            KeypressProcessor.LanguageModeChangeCallback += HighlightActiveVowels;
+
             KeypressProcessor.VowelModeChangeCallback += DisplayVowelMode;
             KeypressProcessor.VowelModeChangeCallback += SetVowelLabels;
+
             KeypressProcessor.KeyModifiersChangeCallback += HighlightActiveVowels;
+            
             KeypressProcessor.DeliverOutput += WriteToWorkArea;
         }
 
@@ -41,11 +53,78 @@ namespace BanglaConverter
         /// </summary>
         private void HighlightActiveVowels()
         {
-            bool shift = KeypressProcessor.HasModifier(KeypressProcessor.KeyModifier.Shift);
-            lblFirstVowel.BackColor = shift ? Color.White : Color.Gray;
-            //lblFirstVowel.BorderStyle = shift ? BorderStyle.Fixed3D : BorderStyle.FixedSingle;
-            lblA.BackColor = shift ? Color.Gray : Color.White;
-            //lblA.BorderStyle = shift ? BorderStyle.FixedSingle : BorderStyle.Fixed3D;
+            // Gets the list of vowels to highlight.
+            List<BanglaUnicodeData.CodePoint> activeVowels = KeypressProcessor.GetActiveBanglaVowels();
+
+            bool firstVowelActive = false, aActive = false,
+                shortIActive = false, longIActive = false,
+                shortUActive = false, longUActive = false,
+                riActive = false,
+                eActive = false, oiActive = false;
+            
+            foreach (BanglaUnicodeData.CodePoint vowel in activeVowels)
+            {
+                if (vowel == BanglaUnicodeData.CodePoint.FirstVowel)
+                {
+                    firstVowelActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.A || vowel == BanglaUnicodeData.CodePoint.AKar)
+                {
+                    aActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.ShortI || vowel == BanglaUnicodeData.CodePoint.ShortIKar)
+                {
+                    shortIActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.LongI || vowel == BanglaUnicodeData.CodePoint.LongIKar)
+                {
+                    longIActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.ShortU || vowel == BanglaUnicodeData.CodePoint.ShortUKar)
+                {
+                    shortUActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.LongU || vowel == BanglaUnicodeData.CodePoint.LongUKar)
+                {
+                    longUActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.RI || vowel == BanglaUnicodeData.CodePoint.RIKar)
+                {
+                    riActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.E || vowel == BanglaUnicodeData.CodePoint.EKar)
+                {
+                    eActive = true;
+                }
+                else if (vowel == BanglaUnicodeData.CodePoint.OI || vowel == BanglaUnicodeData.CodePoint.OIKar)
+                {
+                    oiActive = true;
+                }
+            }
+
+            //lblFirstVowel.BackColor = firstVowelActive ? ActiveBgColor : InactiveBgColor;
+            //lblA.BackColor = aActive ? ActiveBgColor : InactiveBgColor;
+            //lblShortI.BackColor = shortIActive ? ActiveBgColor : InactiveBgColor;
+            //lblLongI.BackColor = longIActive ? ActiveBgColor : InactiveBgColor;
+            //lblShortU.BackColor = shortUActive ? ActiveBgColor : InactiveBgColor;
+            //lblLongU.BackColor = longUActive ? ActiveBgColor : InactiveBgColor;
+
+            //lblFirstVowel.ForeColor = firstVowelActive ? ActiveFgColor : InactiveFgColor;
+            //lblA.ForeColor = aActive ? ActiveFgColor : InactiveFgColor;
+            //lblShortI.ForeColor = shortIActive ? ActiveFgColor : InactiveFgColor;
+            //lblLongI.ForeColor = longIActive ? ActiveFgColor : InactiveFgColor;
+            //lblShortU.ForeColor = shortUActive ? ActiveFgColor : InactiveFgColor;
+            //lblLongU.ForeColor = longUActive ? ActiveFgColor : InactiveFgColor;
+
+            lblFirstVowel.Visible = firstVowelActive;
+            lblA.Visible = aActive;
+            lblShortI.Visible = shortIActive;
+            lblLongI.Visible = longIActive;
+            lblShortU.Visible = shortUActive;
+            lblLongU.Visible = longUActive;
+            lblRI.Visible = riActive;
+            lblE.Visible = eActive;
+            lblOI.Visible = oiActive;
         }
 
         private void DisplayVowelMode()
@@ -70,6 +149,10 @@ namespace BanglaConverter
                 lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongI);
                 lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortU);
                 lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongU);
+                lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RI);
+                lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.E);
+                lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OI);
+
             }
             else
             {
@@ -79,6 +162,9 @@ namespace BanglaConverter
                 lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongIKar);
                 lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortUKar);
                 lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongUKar);
+                lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RIKar);
+                lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.EKar);
+                lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OIKar);
             }
         }
 
@@ -92,11 +178,6 @@ namespace BanglaConverter
             {
                 lblLanguageMode.Text = "English Mode";
             }    
-        }
-
-        private void DisplayText()
-        {
-
         }
 
         private void txtWorkArea_KeyUp(object sender, KeyEventArgs e)
