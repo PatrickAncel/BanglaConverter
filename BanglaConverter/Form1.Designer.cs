@@ -46,6 +46,9 @@
             this.lblOI = new System.Windows.Forms.Label();
             this.lblE = new System.Windows.Forms.Label();
             this.lblR = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblO = new System.Windows.Forms.Label();
+            this.lblOU = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblVowelMode
@@ -280,11 +283,54 @@
             this.lblR.Text = "R";
             this.lblR.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(22, 580);
+            this.label6.MinimumSize = new System.Drawing.Size(30, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 30);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "O";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblO
+            // 
+            this.lblO.AutoSize = true;
+            this.lblO.BackColor = System.Drawing.Color.White;
+            this.lblO.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblO.Location = new System.Drawing.Point(58, 580);
+            this.lblO.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblO.Name = "lblO";
+            this.lblO.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.lblO.Size = new System.Drawing.Size(30, 30);
+            this.lblO.TabIndex = 23;
+            this.lblO.Text = "O";
+            this.lblO.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblOU
+            // 
+            this.lblOU.AutoSize = true;
+            this.lblOU.BackColor = System.Drawing.Color.White;
+            this.lblOU.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblOU.Location = new System.Drawing.Point(94, 580);
+            this.lblOU.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblOU.Name = "lblOU";
+            this.lblOU.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.lblOU.Size = new System.Drawing.Size(35, 30);
+            this.lblOU.TabIndex = 24;
+            this.lblOU.Text = "OU";
+            this.lblOU.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 634);
+            this.Controls.Add(this.lblOU);
+            this.Controls.Add(this.lblO);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblR);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblOI);
@@ -330,5 +376,8 @@
         private Label lblOI;
         private Label lblE;
         private Label lblR;
+        private Label label6;
+        private Label lblO;
+        private Label lblOU;
     }
 }

@@ -60,8 +60,9 @@ namespace BanglaConverter
                 shortIActive = false, longIActive = false,
                 shortUActive = false, longUActive = false,
                 rActive = false, riActive = false,
-                eActive = false, oiActive = false;
-            
+                eActive = false, oiActive = false,
+                oActive = false, ouActive = false;
+
             foreach (BanglaUnicodeData.CodePoint letter in activeLetters)
             {
                 if (letter == BanglaUnicodeData.CodePoint.FirstVowel)
@@ -104,6 +105,14 @@ namespace BanglaConverter
                 {
                     oiActive = true;
                 }
+                else if (letter == BanglaUnicodeData.CodePoint.O || letter == BanglaUnicodeData.CodePoint.OKar)
+                {
+                    oActive = true;
+                }
+                else if (letter == BanglaUnicodeData.CodePoint.OU || letter == BanglaUnicodeData.CodePoint.OUKar)
+                {
+                    ouActive = true;
+                }
             }
 
             //lblFirstVowel.BackColor = firstVowelActive ? ActiveBgColor : InactiveBgColor;
@@ -130,6 +139,8 @@ namespace BanglaConverter
             lblRI.Visible = riActive;
             lblE.Visible = eActive;
             lblOI.Visible = oiActive;
+            lblO.Visible = oActive;
+            lblOU.Visible = ouActive;
         }
 
         private void DisplayVowelMode()
@@ -157,6 +168,8 @@ namespace BanglaConverter
                 lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RI);
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.E);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OI);
+                lblO.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.O);
+                lblOU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OU);
             }
             else
             {
@@ -169,6 +182,8 @@ namespace BanglaConverter
                 lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RIKar);
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.EKar);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OIKar);
+                lblO.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OKar);
+                lblOU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OUKar);
             }
             lblR.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.R);
         }
