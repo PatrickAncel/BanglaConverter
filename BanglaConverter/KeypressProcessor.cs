@@ -121,16 +121,16 @@ namespace BanglaConverter
         };
 
         /// <summary>
-        /// Returns the list of active Bangla vowels (those that can be typed at the current moment)
+        /// Returns the list of active Bangla characters (those that can be typed at the current moment)
         /// based on whether the shift key is held. For example, if shift is held, the returned
         /// list will include LongI (because typing I while holding shift produces LongI), but if
         /// shift is not held, the list will include ShortI instead.
         /// </summary>
-        public static List<CodePoint> GetActiveBanglaVowels()
+        public static List<CodePoint> GetActiveBanglaLetters()
         {
-            List<CodePoint> activeVowels = new List<CodePoint>();
+            List<CodePoint> activeLetters = new List<CodePoint>();
 
-            // If the language is English, there are no active Bangla vowels.
+            // If the language is English, there are no active Bangla letters.
             if (CurrentLanguageMode != LanguageMode.English)
             {
                 bool shift = HasModifier(KeyModifier.Shift);
@@ -143,13 +143,19 @@ namespace BanglaConverter
                     // The Invalid CodePoint means there is no appropriate vowel for the VowelKey.
                     if (appropriateVowel != CodePoint.Invalid)
                     {
-                        activeVowels.Add(appropriateVowel);
+                        activeLetters.Add(appropriateVowel);
                     }
+                }
+
+                // The consonant R is active if shift is not held.
+                if (!shift)
+                {
+                    activeLetters.Add(CodePoint.R);
                 }
                 
             }
 
-            return activeVowels;
+            return activeLetters;
         }
 
         /// <summary>
@@ -420,6 +426,11 @@ namespace BanglaConverter
             }
             // If any other key was pressed and the language mode is English, do nothing to the input.
             else if (CurrentLanguageMode == LanguageMode.English)
+            {
+                return;
+            }
+            // If the key combination is Ctrl + C, Ctrl + V, or Ctrl + A, do nothing to the input.
+            else if (e.Control && !e.Shift && !e.Alt && (e.KeyCode == Keys.C || e.KeyCode == Keys.V || e.KeyCode == Keys.A))
             {
                 return;
             }

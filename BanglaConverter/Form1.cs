@@ -15,18 +15,18 @@ namespace BanglaConverter
             InitializeComponent();
             DisplayVowelMode();
             DisplayLanguageMode();
-            HighlightActiveVowels();
+            HighlightActiveLetters();
 
             DisplayVowelMode();
-            SetVowelLabels();
+            SetLetterLabels();
 
             KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
-            KeypressProcessor.LanguageModeChangeCallback += HighlightActiveVowels;
+            KeypressProcessor.LanguageModeChangeCallback += HighlightActiveLetters;
 
             KeypressProcessor.VowelModeChangeCallback += DisplayVowelMode;
-            KeypressProcessor.VowelModeChangeCallback += SetVowelLabels;
+            KeypressProcessor.VowelModeChangeCallback += SetLetterLabels;
 
-            KeypressProcessor.KeyModifiersChangeCallback += HighlightActiveVowels;
+            KeypressProcessor.KeyModifiersChangeCallback += HighlightActiveLetters;
             
             KeypressProcessor.DeliverOutput += WriteToWorkArea;
         }
@@ -48,55 +48,59 @@ namespace BanglaConverter
         }
 
         /// <summary>
-        /// Changes the background colors of the vowel labels to indicate which ones are active,
+        /// Changes the background colors of the letter labels to indicate which ones are active,
         /// depending on whether the shift key is held.
         /// </summary>
-        private void HighlightActiveVowels()
+        private void HighlightActiveLetters()
         {
-            // Gets the list of vowels to highlight.
-            List<BanglaUnicodeData.CodePoint> activeVowels = KeypressProcessor.GetActiveBanglaVowels();
+            // Gets the list of letters to highlight.
+            List<BanglaUnicodeData.CodePoint> activeLetters = KeypressProcessor.GetActiveBanglaLetters();
 
             bool firstVowelActive = false, aActive = false,
                 shortIActive = false, longIActive = false,
                 shortUActive = false, longUActive = false,
-                riActive = false,
+                rActive = false, riActive = false,
                 eActive = false, oiActive = false;
             
-            foreach (BanglaUnicodeData.CodePoint vowel in activeVowels)
+            foreach (BanglaUnicodeData.CodePoint letter in activeLetters)
             {
-                if (vowel == BanglaUnicodeData.CodePoint.FirstVowel)
+                if (letter == BanglaUnicodeData.CodePoint.FirstVowel)
                 {
                     firstVowelActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.A || vowel == BanglaUnicodeData.CodePoint.AKar)
+                else if (letter == BanglaUnicodeData.CodePoint.A || letter == BanglaUnicodeData.CodePoint.AKar)
                 {
                     aActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.ShortI || vowel == BanglaUnicodeData.CodePoint.ShortIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.ShortI || letter == BanglaUnicodeData.CodePoint.ShortIKar)
                 {
                     shortIActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.LongI || vowel == BanglaUnicodeData.CodePoint.LongIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.LongI || letter == BanglaUnicodeData.CodePoint.LongIKar)
                 {
                     longIActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.ShortU || vowel == BanglaUnicodeData.CodePoint.ShortUKar)
+                else if (letter == BanglaUnicodeData.CodePoint.ShortU || letter == BanglaUnicodeData.CodePoint.ShortUKar)
                 {
                     shortUActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.LongU || vowel == BanglaUnicodeData.CodePoint.LongUKar)
+                else if (letter == BanglaUnicodeData.CodePoint.LongU || letter == BanglaUnicodeData.CodePoint.LongUKar)
                 {
                     longUActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.RI || vowel == BanglaUnicodeData.CodePoint.RIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.R)
+                {
+                    rActive = true;
+                }
+                else if (letter == BanglaUnicodeData.CodePoint.RI || letter == BanglaUnicodeData.CodePoint.RIKar)
                 {
                     riActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.E || vowel == BanglaUnicodeData.CodePoint.EKar)
+                else if (letter == BanglaUnicodeData.CodePoint.E || letter == BanglaUnicodeData.CodePoint.EKar)
                 {
                     eActive = true;
                 }
-                else if (vowel == BanglaUnicodeData.CodePoint.OI || vowel == BanglaUnicodeData.CodePoint.OIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.OI || letter == BanglaUnicodeData.CodePoint.OIKar)
                 {
                     oiActive = true;
                 }
@@ -122,6 +126,7 @@ namespace BanglaConverter
             lblLongI.Visible = longIActive;
             lblShortU.Visible = shortUActive;
             lblLongU.Visible = longUActive;
+            lblR.Visible = rActive;
             lblRI.Visible = riActive;
             lblE.Visible = eActive;
             lblOI.Visible = oiActive;
@@ -139,7 +144,7 @@ namespace BanglaConverter
             }
         }
 
-        private void SetVowelLabels()
+        private void SetLetterLabels()
         {
             if (KeypressProcessor.CurrentVowelMode == KeypressProcessor.VowelMode.FullVowel)
             {
@@ -152,7 +157,6 @@ namespace BanglaConverter
                 lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RI);
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.E);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OI);
-
             }
             else
             {
@@ -166,6 +170,7 @@ namespace BanglaConverter
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.EKar);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OIKar);
             }
+            lblR.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.R);
         }
 
         private void DisplayLanguageMode()

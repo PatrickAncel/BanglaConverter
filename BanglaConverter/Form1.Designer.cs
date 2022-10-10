@@ -45,6 +45,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblOI = new System.Windows.Forms.Label();
             this.lblE = new System.Windows.Forms.Label();
+            this.lblR = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblVowelMode
@@ -106,7 +107,7 @@
             this.lblShortI.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblShortI.Size = new System.Drawing.Size(30, 30);
             this.lblShortI.TabIndex = 7;
-            this.lblShortI.Text = "A";
+            this.lblShortI.Text = "I";
             this.lblShortI.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblLongI
@@ -120,7 +121,7 @@
             this.lblLongI.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblLongI.Size = new System.Drawing.Size(30, 30);
             this.lblLongI.TabIndex = 8;
-            this.lblLongI.Text = "A";
+            this.lblLongI.Text = "I";
             this.lblLongI.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblShortU
@@ -134,7 +135,7 @@
             this.lblShortU.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblShortU.Size = new System.Drawing.Size(30, 30);
             this.lblShortU.TabIndex = 9;
-            this.lblShortU.Text = "A";
+            this.lblShortU.Text = "U";
             this.lblShortU.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblLongU
@@ -148,7 +149,7 @@
             this.lblLongU.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblLongU.Size = new System.Drawing.Size(30, 30);
             this.lblLongU.TabIndex = 10;
-            this.lblLongU.Text = "A";
+            this.lblLongU.Text = "U";
             this.lblLongU.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtWorkArea
@@ -216,13 +217,13 @@
             this.lblRI.AutoSize = true;
             this.lblRI.BackColor = System.Drawing.Color.White;
             this.lblRI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRI.Location = new System.Drawing.Point(76, 501);
+            this.lblRI.Location = new System.Drawing.Point(94, 501);
             this.lblRI.MinimumSize = new System.Drawing.Size(30, 30);
             this.lblRI.Name = "lblRI";
             this.lblRI.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblRI.Size = new System.Drawing.Size(30, 30);
             this.lblRI.TabIndex = 15;
-            this.lblRI.Text = "A";
+            this.lblRI.Text = "RI";
             this.lblRI.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label5
@@ -248,7 +249,7 @@
             this.lblOI.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblOI.Size = new System.Drawing.Size(30, 30);
             this.lblOI.TabIndex = 19;
-            this.lblOI.Text = "A";
+            this.lblOI.Text = "OI";
             this.lblOI.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblE
@@ -262,14 +263,29 @@
             this.lblE.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.lblE.Size = new System.Drawing.Size(30, 30);
             this.lblE.TabIndex = 18;
-            this.lblE.Text = "A";
+            this.lblE.Text = "E";
             this.lblE.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.BackColor = System.Drawing.Color.White;
+            this.lblR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblR.Location = new System.Drawing.Point(58, 501);
+            this.lblR.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblR.Name = "lblR";
+            this.lblR.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.lblR.Size = new System.Drawing.Size(30, 30);
+            this.lblR.TabIndex = 21;
+            this.lblR.Text = "R";
+            this.lblR.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 634);
+            this.Controls.Add(this.lblR);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblOI);
             this.Controls.Add(this.lblE);
@@ -313,5 +329,6 @@
         private Label label5;
         private Label lblOI;
         private Label lblE;
+        private Label lblR;
     }
 }
