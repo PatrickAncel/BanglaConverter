@@ -74,7 +74,6 @@
             // lblFirstVowel
             // 
             this.lblFirstVowel.AutoSize = true;
-            this.lblFirstVowel.BackColor = System.Drawing.Color.White;
             this.lblFirstVowel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblFirstVowel.Location = new System.Drawing.Point(58, 384);
             this.lblFirstVowel.MinimumSize = new System.Drawing.Size(30, 30);
@@ -88,7 +87,6 @@
             // lblA
             // 
             this.lblA.AutoSize = true;
-            this.lblA.BackColor = System.Drawing.Color.White;
             this.lblA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblA.Location = new System.Drawing.Point(94, 384);
             this.lblA.MinimumSize = new System.Drawing.Size(30, 30);
@@ -102,7 +100,6 @@
             // lblShortI
             // 
             this.lblShortI.AutoSize = true;
-            this.lblShortI.BackColor = System.Drawing.Color.White;
             this.lblShortI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblShortI.Location = new System.Drawing.Point(58, 423);
             this.lblShortI.MinimumSize = new System.Drawing.Size(30, 30);
@@ -116,7 +113,6 @@
             // lblLongI
             // 
             this.lblLongI.AutoSize = true;
-            this.lblLongI.BackColor = System.Drawing.Color.White;
             this.lblLongI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLongI.Location = new System.Drawing.Point(94, 423);
             this.lblLongI.MinimumSize = new System.Drawing.Size(30, 30);
@@ -130,7 +126,6 @@
             // lblShortU
             // 
             this.lblShortU.AutoSize = true;
-            this.lblShortU.BackColor = System.Drawing.Color.White;
             this.lblShortU.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblShortU.Location = new System.Drawing.Point(58, 462);
             this.lblShortU.MinimumSize = new System.Drawing.Size(30, 30);
@@ -144,7 +139,6 @@
             // lblLongU
             // 
             this.lblLongU.AutoSize = true;
-            this.lblLongU.BackColor = System.Drawing.Color.White;
             this.lblLongU.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLongU.Location = new System.Drawing.Point(94, 462);
             this.lblLongU.MinimumSize = new System.Drawing.Size(30, 30);
@@ -218,7 +212,6 @@
             // lblRI
             // 
             this.lblRI.AutoSize = true;
-            this.lblRI.BackColor = System.Drawing.Color.White;
             this.lblRI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblRI.Location = new System.Drawing.Point(94, 501);
             this.lblRI.MinimumSize = new System.Drawing.Size(30, 30);
@@ -244,7 +237,6 @@
             // lblOI
             // 
             this.lblOI.AutoSize = true;
-            this.lblOI.BackColor = System.Drawing.Color.White;
             this.lblOI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOI.Location = new System.Drawing.Point(94, 541);
             this.lblOI.MinimumSize = new System.Drawing.Size(30, 30);
@@ -258,7 +250,6 @@
             // lblE
             // 
             this.lblE.AutoSize = true;
-            this.lblE.BackColor = System.Drawing.Color.White;
             this.lblE.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblE.Location = new System.Drawing.Point(58, 541);
             this.lblE.MinimumSize = new System.Drawing.Size(30, 30);
@@ -272,7 +263,6 @@
             // lblR
             // 
             this.lblR.AutoSize = true;
-            this.lblR.BackColor = System.Drawing.Color.White;
             this.lblR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblR.Location = new System.Drawing.Point(58, 501);
             this.lblR.MinimumSize = new System.Drawing.Size(30, 30);
@@ -298,7 +288,6 @@
             // lblO
             // 
             this.lblO.AutoSize = true;
-            this.lblO.BackColor = System.Drawing.Color.White;
             this.lblO.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblO.Location = new System.Drawing.Point(58, 580);
             this.lblO.MinimumSize = new System.Drawing.Size(30, 30);
@@ -312,7 +301,6 @@
             // lblOU
             // 
             this.lblOU.AutoSize = true;
-            this.lblOU.BackColor = System.Drawing.Color.White;
             this.lblOU.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOU.Location = new System.Drawing.Point(94, 580);
             this.lblOU.MinimumSize = new System.Drawing.Size(30, 30);

@@ -449,6 +449,16 @@ namespace BanglaConverter
                 if (banglaText != "")
                 {
                     DeliverOutput(banglaText);
+                    // If the last character typed was a consonant, switch to vowel-sign mode.
+                    if (CurrentVowelMode == VowelMode.FullVowel && IsBanglaConsonant(banglaText[0]))
+                    {
+                        ToggleVowelMode();
+                    }
+                    // If the last character typed was a vowel, switch to full-vowel mode.
+                    else if (CurrentVowelMode == VowelMode.VowelSign && IsBanglaVowel(banglaText[0]))
+                    {
+                        ToggleVowelMode();
+                    }
                     e.SuppressKeyPress = true;
                 }
             }

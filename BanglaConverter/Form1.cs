@@ -3,12 +3,13 @@ namespace BanglaConverter
     public partial class MainForm : Form
     {
 
-        //private readonly Color InactiveBgColor = Color.FromArgb(50, 50, 50);
-        private readonly Color InactiveBgColor = Color.Gray;
-        private readonly Color ActiveBgColor = Color.White;
-
-        private readonly Color InactiveFgColor = Color.Gray;
-        private readonly Color ActiveFgColor = Color.Black;
+        /// <summary>
+        /// A string containing the word "Bangla" written in Bangla letters.
+        /// </summary>
+        private string banglaInBangla
+            = BanglaUnicodeData
+                .MakeString(BanglaUnicodeData.CodePoint.B, BanglaUnicodeData.CodePoint.AKar, BanglaUnicodeData.CodePoint.Anusvar,
+                    BanglaUnicodeData.CodePoint.L, BanglaUnicodeData.CodePoint.AKar);
 
         public MainForm()
         {
@@ -115,20 +116,6 @@ namespace BanglaConverter
                 }
             }
 
-            //lblFirstVowel.BackColor = firstVowelActive ? ActiveBgColor : InactiveBgColor;
-            //lblA.BackColor = aActive ? ActiveBgColor : InactiveBgColor;
-            //lblShortI.BackColor = shortIActive ? ActiveBgColor : InactiveBgColor;
-            //lblLongI.BackColor = longIActive ? ActiveBgColor : InactiveBgColor;
-            //lblShortU.BackColor = shortUActive ? ActiveBgColor : InactiveBgColor;
-            //lblLongU.BackColor = longUActive ? ActiveBgColor : InactiveBgColor;
-
-            //lblFirstVowel.ForeColor = firstVowelActive ? ActiveFgColor : InactiveFgColor;
-            //lblA.ForeColor = aActive ? ActiveFgColor : InactiveFgColor;
-            //lblShortI.ForeColor = shortIActive ? ActiveFgColor : InactiveFgColor;
-            //lblLongI.ForeColor = longIActive ? ActiveFgColor : InactiveFgColor;
-            //lblShortU.ForeColor = shortUActive ? ActiveFgColor : InactiveFgColor;
-            //lblLongU.ForeColor = longUActive ? ActiveFgColor : InactiveFgColor;
-
             lblFirstVowel.Visible = firstVowelActive;
             lblA.Visible = aActive;
             lblShortI.Visible = shortIActive;
@@ -193,10 +180,12 @@ namespace BanglaConverter
             if (KeypressProcessor.CurrentLanguageMode == KeypressProcessor.LanguageMode.Bangla)
             {
                 lblLanguageMode.Text = "Bangla Mode";
+                this.Text = banglaInBangla;
             }
             else if (KeypressProcessor.CurrentLanguageMode == KeypressProcessor.LanguageMode.English)
             {
                 lblLanguageMode.Text = "English Mode";
+                this.Text = "English";
             }    
         }
 

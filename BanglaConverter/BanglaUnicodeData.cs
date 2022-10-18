@@ -94,5 +94,54 @@ namespace BanglaConverter
             }
             return text;
         }
+
+        /// <summary>
+        /// Determines if the character is a Bangla consonant, not including U+09DC, U+09DD, and U+09DF.
+        /// This method will return false positives for any of the reserved code points between U+0995 and U+09B9
+        /// in the Bangla Unicode block.
+        /// </summary>
+        public static bool IsBanglaConsonant(char ch)
+        {
+            // Subtracts the offset from the character's numeric value.
+            int codePointValue = ch - CODE_POINT_OFFSET;
+
+            if ((int)CodePoint.K <= codePointValue && codePointValue <= (int)CodePoint.H)
+            {
+                return true;
+            }
+            else if (codePointValue == (int)CodePoint.KhondoT)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Determines if the character is a Bangla full vowel or vowel sign.
+        /// This method will return false positives for certain reserved code points.
+        /// </summary>
+        public static bool IsBanglaVowel(char ch)
+        {
+            // Subtracts the offset from the character's numeric value.
+            int codePointValue = ch - CODE_POINT_OFFSET;
+
+            // Checks if the character is a full vowel.
+            if ((int)CodePoint.FirstVowel <= codePointValue && codePointValue <= (int)CodePoint.OU)
+            {
+                return true;
+            }
+            // Checks if the character is a vowel sign.
+            else if ((int)CodePoint.AKar <= codePointValue && codePointValue <= (int)CodePoint.OUKar)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
