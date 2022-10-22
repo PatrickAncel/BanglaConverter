@@ -22,6 +22,15 @@ namespace BanglaConverter
             VowelModeChangeCallback();
         }
 
+        private static void SetVowelMode(VowelMode newVowelMode)
+        {
+            // Toggles the vowel mode if the current vowel mode does not match the desired one.
+            if (CurrentVowelMode != newVowelMode)
+            {
+                ToggleVowelMode();
+            }
+        }
+
         /// <summary>
         /// When a key is pressed, determines whether to convert the character to Bangla or leave as is.
         /// </summary>
@@ -71,7 +80,18 @@ namespace BanglaConverter
         internal static UICallback KeyModifiersChangeCallback { get; set; } = () => { };
 
         internal delegate void UIOutputDeliverer(string output);
+        /// <summary>
+        /// This is the delegate used to send output back to the UI.
+        /// </summary>
         internal static UIOutputDeliverer DeliverOutput { get; set; } = (string output) => { };
+
+        internal delegate string UIInputReceiver();
+
+        /// <summary>
+        /// This is the delegate used to receive text input from the UI.
+        /// This allows the KeypressProcessor to decide the appropriate vowel-mode.
+        /// </summary>
+        internal static UIInputReceiver ReadTextBeforeCursor { get; set; } = () => throw new NotImplementedException();
 
         private class VowelKey
         {
@@ -147,10 +167,10 @@ namespace BanglaConverter
                     }
                 }
 
-                // The consonant R is active if shift is not held.
+                // The consonant Ra is active if shift is not held.
                 if (!shift)
                 {
-                    activeLetters.Add(CodePoint.R);
+                    activeLetters.Add(CodePoint.Ra);
                 }
                 
             }
@@ -201,31 +221,31 @@ namespace BanglaConverter
             switch (e.KeyCode)
             {
                 case Keys.K:
-                    consonant = CodePoint.K;
+                    consonant = CodePoint.Ka;
                     break;
                 case Keys.G:
-                    consonant = CodePoint.G;
+                    consonant = CodePoint.Ga;
                     break;
                 case Keys.C:
-                    consonant = CodePoint.C;
+                    consonant = CodePoint.Ca;
                     break;
                 case Keys.J:
-                    consonant = CodePoint.J;
+                    consonant = CodePoint.Ja;
                     break;
                 case Keys.T:
                     if (e.Alt)
-                        consonant = CodePoint.KhondoT;
+                        consonant = CodePoint.KhondoTa;
                     else
-                        consonant = e.Control ? CodePoint.RetroflexT : CodePoint.DentalT;
+                        consonant = e.Control ? CodePoint.RetroflexTa : CodePoint.DentalTa;
                     break;
                 case Keys.D:
-                    consonant = e.Control ? CodePoint.RetroflexD : CodePoint.DentalD;
+                    consonant = e.Control ? CodePoint.RetroflexDa : CodePoint.DentalDa;
                     break;
                 case Keys.P:
-                    consonant = CodePoint.P;
+                    consonant = CodePoint.Pa;
                     break;
                 case Keys.B:
-                    consonant = CodePoint.B;
+                    consonant = CodePoint.Ba;
                     break;
                 default:
                     break;
@@ -236,8 +256,8 @@ namespace BanglaConverter
             if (consonant != CodePoint.Invalid)
             {
                 // The shift key switches the consonant to the aspirated version.
-                // KhondoT is simply a variant of DentalT and has no aspirated version.
-                if (consonant == CodePoint.KhondoT || !e.Shift)
+                // KhondoTa is simply a variant of DentalTa and has no aspirated version.
+                if (consonant == CodePoint.KhondoTa || !e.Shift)
                 {
                     banglaChar = "" + (char)(CODE_POINT_OFFSET + consonant);
                 }
@@ -263,11 +283,11 @@ namespace BanglaConverter
 
                 if (e.Control)
                 {
-                    codePoint = e.Shift ? CodePoint.IY : CodePoint.UNG;
+                    codePoint = e.Shift ? CodePoint.Iya : CodePoint.Unga;
                 }
                 else
                 {
-                    codePoint = e.Shift ? CodePoint.MurdhonnoN : CodePoint.DentalN;
+                    codePoint = e.Shift ? CodePoint.MurdhonnoNa : CodePoint.DentalNa;
                 }
 
                 banglaChar = "" + (char)(CODE_POINT_OFFSET + codePoint);
@@ -293,15 +313,15 @@ namespace BanglaConverter
                 }
                 else if (e.Shift)
                 {
-                    codePoint = CodePoint.TalobboS;
+                    codePoint = CodePoint.TalobboSa;
                 }
                 else if (e.Control)
                 {
-                    codePoint = CodePoint.MurdhonnoS;
+                    codePoint = CodePoint.MurdhonnoSa;
                 }
                 else
                 {
-                    codePoint = CodePoint.DentalS;
+                    codePoint = CodePoint.DentalSa;
                 }
 
                 if (codePoint != CodePoint.Invalid)
@@ -343,27 +363,27 @@ namespace BanglaConverter
             }
             else if (e.KeyCode == Keys.M)
             {
-                banglaText = MakeString(CodePoint.M);
+                banglaText = MakeString(CodePoint.Ma);
             }
             else if (e.KeyCode == Keys.Y)
             {
-                banglaText = MakeString(CodePoint.Y);
+                banglaText = MakeString(CodePoint.Ya);
             }
             else if (e.KeyCode == Keys.R)
             {
-                banglaText = MakeString(CodePoint.R);
+                banglaText = MakeString(CodePoint.Ra);
             }
             else if (e.KeyCode == Keys.L)
             {
-                banglaText = MakeString(CodePoint.L);
+                banglaText = MakeString(CodePoint.La);
             }
             else if (e.KeyCode == Keys.H)
             {
-                banglaText = MakeString(CodePoint.H);
+                banglaText = MakeString(CodePoint.Ha);
             }
             else if (e.KeyCode == Keys.X)
             {
-                banglaText = MakeString(CodePoint.K, CodePoint.Hosont, CodePoint.MurdhonnoS);
+                banglaText = MakeString(CodePoint.Ka, CodePoint.Hosont, CodePoint.MurdhonnoSa);
             }
             else if (e.KeyCode == Keys.Oemtilde)
             {
@@ -449,19 +469,79 @@ namespace BanglaConverter
                 if (banglaText != "")
                 {
                     DeliverOutput(banglaText);
-                    // If the last character typed was a consonant, switch to vowel-sign mode.
-                    if (CurrentVowelMode == VowelMode.FullVowel && IsBanglaConsonant(banglaText[0]))
-                    {
-                        ToggleVowelMode();
-                    }
-                    // If the last character typed was a vowel, switch to full-vowel mode.
-                    else if (CurrentVowelMode == VowelMode.VowelSign && IsBanglaVowel(banglaText[0]))
-                    {
-                        ToggleVowelMode();
-                    }
+                    AutoSetVowelMode();
                     e.SuppressKeyPress = true;
                 }
+                // If an arrow key or backspace was pressed, this needs to be handled by a separate event.
+                else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Back)
+                {
+                    return;
+                }
+                else
+                {
+                    //MessageBox.Show(e.KeyCode.ToString());
+                }
             }
+        }
+
+        /// <summary>
+        /// Automatically sets the vowel mode according to what lies directly before the cursor / selection area.
+        /// </summary>
+        public static void AutoSetVowelMode()
+        {
+            string textBeforeCursor = ReadTextBeforeCursor();
+
+            // If there is no text before the cursor and the user types a vowel, it should probably be a full vowel,
+            // because it is at the start of the text.
+            if (textBeforeCursor == string.Empty)
+            {
+                SetVowelMode(VowelMode.FullVowel);
+                return;
+            }
+
+            bool startsWithConsonant = IsBanglaConsonant(textBeforeCursor[0]);
+
+            // If the first character is a Bangla consonant and the syllable is not closed by a vowel sign, anusvar, or bisorgo,
+            // then if the next character typed is a vowel, it should likely be a vowel sign. If the user wants to enter a full-vowel anyway
+            // (because the preceding syllable is closed by an inherent vowel), they will need to switch back to full-vowel mode manually.
+            if (startsWithConsonant)
+            {
+                bool canReceiveVowelSign = true;
+
+                // Checks the remaining characters to see if the syllable can still receive a vowel sign.
+                for (int i = 1; i < textBeforeCursor.Length; i++)
+                {
+                    char ch = textBeforeCursor[i];
+
+                    if (IsBanglaVowelSign(ch)
+                        || ch == (char)((int)CodePoint.Anusvar + CODE_POINT_OFFSET)
+                        || ch == (char)((int)CodePoint.Bisorgo + CODE_POINT_OFFSET))
+                    {
+                        canReceiveVowelSign = false;
+                        break;
+                    }
+                }
+
+                if (canReceiveVowelSign)
+                {
+                    // Because a vowel sign can still be attached to the consonant, the vowel mode will be set to vowel-sign mode.
+                    // If the user intends for an inherent vowel to close the syllable and wants to type a full vowel next, they
+                    // will need to switch to full-vowel mode manually.
+                    SetVowelMode(VowelMode.VowelSign);
+                }
+                else
+                {
+                    // Because a vowel sign, anusvar, or bisorgo is already attached to the consonant or conjunct,
+                    // if the next character is a vowel, the user probably intends it to be a full vowel.
+                    SetVowelMode(VowelMode.FullVowel);
+                }
+            }
+            // If the first character is not a Bangla consonant, there is nothing to add a vowel sign to, so enter full-vowel mode.
+            else
+            {
+                SetVowelMode(VowelMode.FullVowel);
+            }
+
         }
 
     }

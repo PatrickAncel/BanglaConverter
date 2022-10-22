@@ -48,32 +48,32 @@ namespace BanglaConverter
             UnderDot = 0xBC,
             Hosont = 0xCD,
             // Misc.
-            KhondoT = 0xCE,
+            KhondoTa = 0xCE,
             BDTaka = 0xF3,
             Shunno = 0xE6,
             // Consonants
-            K = 0x95,
-            G = 0x97,
-            UNG = 0x99,
-            C = 0x9A,
-            J = 0x9C,
-            IY = 0x9E,
-            RetroflexT = 0x9F,
-            RetroflexD = 0xA1,
-            MurdhonnoN = 0xA3,
-            DentalT = 0xA4,
-            DentalD = 0xA6,
-            DentalN = 0xA8,
-            P = 0xAA,
-            B = 0xAC,
-            M = 0xAE,
-            Y = 0xAF,
-            R = 0xB0,
-            L = 0xB2,
-            TalobboS = 0xB6,
-            MurdhonnoS = 0xB7,
-            DentalS = 0xB8,
-            H = 0xB9,
+            Ka = 0x95,
+            Ga = 0x97,
+            Unga = 0x99,
+            Ca = 0x9A,
+            Ja = 0x9C,
+            Iya = 0x9E,
+            RetroflexTa = 0x9F,
+            RetroflexDa = 0xA1,
+            MurdhonnoNa = 0xA3,
+            DentalTa = 0xA4,
+            DentalDa = 0xA6,
+            DentalNa = 0xA8,
+            Pa = 0xAA,
+            Ba = 0xAC,
+            Ma = 0xAE,
+            Ya = 0xAF,
+            Ra = 0xB0,
+            La = 0xB2,
+            TalobboSa = 0xB6,
+            MurdhonnoSa = 0xB7,
+            DentalSa = 0xB8,
+            Ha = 0xB9,
             // A special value outside the Bangla Unicode block representing invalid input.
             Invalid = 0x00
         }
@@ -105,11 +105,11 @@ namespace BanglaConverter
             // Subtracts the offset from the character's numeric value.
             int codePointValue = ch - CODE_POINT_OFFSET;
 
-            if ((int)CodePoint.K <= codePointValue && codePointValue <= (int)CodePoint.H)
+            if ((int)CodePoint.Ka <= codePointValue && codePointValue <= (int)CodePoint.Ha)
             {
                 return true;
             }
-            else if (codePointValue == (int)CodePoint.KhondoT)
+            else if (codePointValue == (int)CodePoint.KhondoTa)
             {
                 return true;
             }
@@ -120,28 +120,68 @@ namespace BanglaConverter
         }
 
         /// <summary>
+        /// Determines if the character is a Bangla full vowel.
+        /// This method will return false positives for certain reserved code points.
+        /// </summary>
+        public static bool IsBanglaFullVowel(char ch)
+        {
+            // Subtracts the offset from the character's numeric value.
+            int codePointValue = ch - CODE_POINT_OFFSET;
+
+            return (int)CodePoint.FirstVowel <= codePointValue && codePointValue <= (int)CodePoint.OU;
+        }
+
+        /// <summary>
+        /// Determines if the character is a Bangla vowel sign.
+        /// This method will return false positives for certain reserved code points.
+        /// </summary>
+        public static bool IsBanglaVowelSign(char ch)
+        {
+            // Subtracts the offset from the character's numeric value.
+            int codePointValue = ch - CODE_POINT_OFFSET;
+
+            return (int)CodePoint.AKar <= codePointValue && codePointValue <= (int)CodePoint.OUKar;
+        }
+
+        /// <summary>
         /// Determines if the character is a Bangla full vowel or vowel sign.
         /// This method will return false positives for certain reserved code points.
         /// </summary>
         public static bool IsBanglaVowel(char ch)
         {
+            return IsBanglaVowelSign(ch) || IsBanglaFullVowel(ch);
+        }
+
+        /// <summary>
+        /// Determines if the character is a Bangla numeral.
+        /// </summary>
+        public static bool IsBanglaNumeral(char ch)
+        {
             // Subtracts the offset from the character's numeric value.
             int codePointValue = ch - CODE_POINT_OFFSET;
 
-            // Checks if the character is a full vowel.
-            if ((int)CodePoint.FirstVowel <= codePointValue && codePointValue <= (int)CodePoint.OU)
-            {
-                return true;
-            }
-            // Checks if the character is a vowel sign.
-            else if ((int)CodePoint.AKar <= codePointValue && codePointValue <= (int)CodePoint.OUKar)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // The code point for the Bangla numeral 0.
+            int shunno = (int)CodePoint.Shunno;
+            // The code point for the Bangla numeral 9.
+            int noy = shunno + 9;
+
+            return shunno <= ch && ch <= noy;
+        }
+
+        /// <summary>
+        /// Determines if the character is a Bangla diacritic.
+        /// It may not recognize every Bangla diacritic yet.
+        /// </summary>
+        public static bool IsBanglaDiacritic(char ch)
+        {
+            // Subtracts the offset from the character's numeric value.
+            int codePointValue = ch - CODE_POINT_OFFSET;
+
+            return codePointValue == (int)CodePoint.Chandrabindu
+                || codePointValue == (int)CodePoint.Anusvar
+                || codePointValue == (int)CodePoint.Bisorgo
+                || codePointValue == (int)CodePoint.UnderDot
+                || codePointValue == (int)CodePoint.Hosont;
         }
     }
 }

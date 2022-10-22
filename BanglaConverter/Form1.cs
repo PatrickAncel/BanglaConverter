@@ -8,8 +8,8 @@ namespace BanglaConverter
         /// </summary>
         private string banglaInBangla
             = BanglaUnicodeData
-                .MakeString(BanglaUnicodeData.CodePoint.B, BanglaUnicodeData.CodePoint.AKar, BanglaUnicodeData.CodePoint.Anusvar,
-                    BanglaUnicodeData.CodePoint.L, BanglaUnicodeData.CodePoint.AKar);
+                .MakeString(BanglaUnicodeData.CodePoint.Ba, BanglaUnicodeData.CodePoint.AKar, BanglaUnicodeData.CodePoint.Anusvar,
+                    BanglaUnicodeData.CodePoint.La, BanglaUnicodeData.CodePoint.AKar);
 
         public MainForm()
         {
@@ -21,6 +21,8 @@ namespace BanglaConverter
             DisplayVowelMode();
             SetLetterLabels();
 
+            txtFontSize.Text = txtWorkArea.Font.Size.ToString();
+
             KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
             KeypressProcessor.LanguageModeChangeCallback += HighlightActiveLetters;
 
@@ -30,6 +32,7 @@ namespace BanglaConverter
             KeypressProcessor.KeyModifiersChangeCallback += HighlightActiveLetters;
             
             KeypressProcessor.DeliverOutput += WriteToWorkArea;
+            KeypressProcessor.ReadTextBeforeCursor = ReadTextBeforeCursor;
         }
 
         private void WriteToWorkArea(string text)
@@ -90,7 +93,7 @@ namespace BanglaConverter
                 {
                     longUActive = true;
                 }
-                else if (letter == BanglaUnicodeData.CodePoint.R)
+                else if (letter == BanglaUnicodeData.CodePoint.Ra)
                 {
                     rActive = true;
                 }
@@ -172,7 +175,7 @@ namespace BanglaConverter
                 lblO.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OKar);
                 lblOU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OUKar);
             }
-            lblR.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.R);
+            lblR.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.Ra);
         }
 
         private void DisplayLanguageMode()
@@ -189,6 +192,46 @@ namespace BanglaConverter
             }    
         }
 
+        /// <summary>
+        /// Reads the text immediately before the cursor or selection area.
+        /// Continues reading all text until reaching any character that is not
+        /// a Bangla vowel-sign or diacritic.
+        /// </summary>
+        private string ReadTextBeforeCursor()
+        {
+
+            lblSelectionStart.Text = txtWorkArea.SelectionStart.ToString();
+
+            // Starts at the character directly before the cursor / selection area.
+            int index = txtWorkArea.SelectionStart - 1;
+            string text = "";
+
+            // Keep going as long as the index is valid.
+            while (index >= 0)
+            {
+                // Read the character at the index.
+                char ch = txtWorkArea.Text[index];
+
+                // Add the character to the front of the text.
+                text = ch + text;
+
+                // If the character is anything other than a Bangla vowel-sign or diacritic,
+                // break out of the loop.
+                if (!BanglaUnicodeData.IsBanglaVowelSign(ch) && !BanglaUnicodeData.IsBanglaDiacritic(ch))
+                {
+                    break;
+                }
+
+                // Move to the previous character.
+                index--;
+            }
+
+            // Displays the text in the label.
+            lblBeforeCursor.Text = text;
+
+            return text;
+        }
+
         private void txtWorkArea_KeyUp(object sender, KeyEventArgs e)
         {
             KeypressProcessor.KeyUpHandler(e);
@@ -197,6 +240,22 @@ namespace BanglaConverter
         private void txtWorkArea_KeyDown(object sender, KeyEventArgs e)
         {
             KeypressProcessor.KeyDownHandler(e);
+        }
+
+        private void txtWorkArea_SelectionChanged(object sender, EventArgs e)
+        {
+            // The KeypressProcessor must set the vowel mode according to the position of the new selection.
+            KeypressProcessor.AutoSetVowelMode();
+        }
+
+        private void txtFontSize_TextChanged(object sender, EventArgs e)
+        {
+            // Tries to parse the text into a float. Also ensures the float is positive.
+            if (float.TryParse(txtFontSize.Text, out float newFontSize) && newFontSize > 0)
+            {
+                // Sets the new font size.
+                txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, newFontSize, txtWorkArea.Font.Style);
+            }
         }
     }
 }
