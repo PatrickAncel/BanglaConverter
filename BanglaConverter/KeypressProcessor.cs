@@ -449,8 +449,8 @@ namespace BanglaConverter
             {
                 return;
             }
-            // If the key combination is Ctrl + C, Ctrl + V, or Ctrl + A, do nothing to the input.
-            else if (e.Control && !e.Shift && !e.Alt && (e.KeyCode == Keys.C || e.KeyCode == Keys.V || e.KeyCode == Keys.A))
+            // If the key combination is Ctrl + C, Ctrl + V, Ctrl + X, or Ctrl + A, do nothing to the input.
+            else if (e.Control && !e.Shift && !e.Alt && (e.KeyCode == Keys.C || e.KeyCode == Keys.V || e.KeyCode == Keys.X || e.KeyCode == Keys.A))
             {
                 return;
             }
@@ -465,27 +465,20 @@ namespace BanglaConverter
                 // Converts the keypress to Bangla text.
                 string banglaText = ConvertToBangla(e);
                 // If the keypress has translated into nonempty text, deliver the output and auto-set the vowel mode.
+                // Also, suppress the keypress to avoid inserting extra text.
                 if (banglaText != "")
                 {
                     DeliverOutput(banglaText);
                     AutoSetVowelMode();
+                    e.SuppressKeyPress = true;
                 }
                 // If the key pressed was a letter, regardless of whether the event produced Bangla text,
                 // the keypress needs to be supressed. This prevents the insertion of English letters into
                 // the text.
-                if (Keys.A <= e.KeyCode && e.KeyCode <= Keys.Z)
+                else if (Keys.A <= e.KeyCode && e.KeyCode <= Keys.Z)
                 {
                     e.SuppressKeyPress = true;
                 }
-                //// If an arrow key or backspace was pressed, this needs to be handled by a separate event.
-                //else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Back)
-                //{
-                //    return;
-                //}
-                //else
-                //{
-                //    //MessageBox.Show(e.KeyCode.ToString());
-                //}
             }
         }
 
