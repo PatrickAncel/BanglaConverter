@@ -37,18 +37,7 @@ namespace BanglaConverter
 
         private void WriteToWorkArea(string text)
         {
-            // Gets the position to insert the text.
-            int cursorPosition = txtWorkArea.SelectionStart;
-            // Determines if there is any selected text to write over top of.
-            if (txtWorkArea.SelectionStart > 0)
-            {
-                // Deletes every selected character.
-                txtWorkArea.Text = txtWorkArea.Text.Substring(0, cursorPosition) + txtWorkArea.Text.Substring(cursorPosition + txtWorkArea.SelectionLength);
-            }
-            // Inserts the new characters into the text.
-            txtWorkArea.Text = txtWorkArea.Text.Substring(0, cursorPosition) + text + txtWorkArea.Text.Substring(cursorPosition);
-            // Moves the cursor to the end of the inserted text.
-            txtWorkArea.SelectionStart = cursorPosition + text.Length;
+            txtWorkArea.SelectedText = text;
         }
 
         /// <summary>
