@@ -334,7 +334,7 @@ namespace BanglaConverter
         }
 
         /// <summary>
-        /// Converts key event data into a Bangla character, according to the current vowel mode, if applicable.
+        /// Converts key event data into a Bangla character, according to the current vowel mode (if applicable).
         /// </summary>
         public static string ConvertToBangla(KeyEventArgs e)
         {
@@ -464,23 +464,28 @@ namespace BanglaConverter
             {
                 // Converts the keypress to Bangla text.
                 string banglaText = ConvertToBangla(e);
-                // If the keypress has translated into nonempty text, deliver the output and suppress the keypress.
-                // This check prevents text deletion and other odd behavior when a control key is pressed.
+                // If the keypress has translated into nonempty text, deliver the output and auto-set the vowel mode.
                 if (banglaText != "")
                 {
                     DeliverOutput(banglaText);
                     AutoSetVowelMode();
+                }
+                // If the key pressed was a letter, regardless of whether the event produced Bangla text,
+                // the keypress needs to be supressed. This prevents the insertion of English letters into
+                // the text.
+                if (Keys.A <= e.KeyCode && e.KeyCode <= Keys.Z)
+                {
                     e.SuppressKeyPress = true;
                 }
-                // If an arrow key or backspace was pressed, this needs to be handled by a separate event.
-                else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Back)
-                {
-                    return;
-                }
-                else
-                {
-                    //MessageBox.Show(e.KeyCode.ToString());
-                }
+                //// If an arrow key or backspace was pressed, this needs to be handled by a separate event.
+                //else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Back)
+                //{
+                //    return;
+                //}
+                //else
+                //{
+                //    //MessageBox.Show(e.KeyCode.ToString());
+                //}
             }
         }
 
