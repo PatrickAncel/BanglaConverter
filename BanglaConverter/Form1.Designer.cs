@@ -45,10 +45,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblOI = new System.Windows.Forms.Label();
             this.lblE = new System.Windows.Forms.Label();
-            this.lblR = new System.Windows.Forms.Label();
+            this.lblRa = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblO = new System.Windows.Forms.Label();
             this.lblOU = new System.Windows.Forms.Label();
+            this.lblBeforeCursor = new System.Windows.Forms.Label();
+            this.lblSelectionStart = new System.Windows.Forms.Label();
+            this.txtFontSize = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblVowelMode
@@ -158,6 +162,7 @@
             this.txtWorkArea.Size = new System.Drawing.Size(689, 344);
             this.txtWorkArea.TabIndex = 11;
             this.txtWorkArea.Text = "";
+            this.txtWorkArea.SelectionChanged += new System.EventHandler(this.txtWorkArea_SelectionChanged);
             this.txtWorkArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWorkArea_KeyDown);
             this.txtWorkArea.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtWorkArea_KeyUp);
             // 
@@ -260,18 +265,18 @@
             this.lblE.Text = "E";
             this.lblE.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblR
+            // lblRa
             // 
-            this.lblR.AutoSize = true;
-            this.lblR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblR.Location = new System.Drawing.Point(58, 501);
-            this.lblR.MinimumSize = new System.Drawing.Size(30, 30);
-            this.lblR.Name = "lblR";
-            this.lblR.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.lblR.Size = new System.Drawing.Size(30, 30);
-            this.lblR.TabIndex = 21;
-            this.lblR.Text = "R";
-            this.lblR.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblRa.AutoSize = true;
+            this.lblRa.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRa.Location = new System.Drawing.Point(58, 501);
+            this.lblRa.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblRa.Name = "lblRa";
+            this.lblRa.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.lblRa.Size = new System.Drawing.Size(30, 30);
+            this.lblRa.TabIndex = 21;
+            this.lblRa.Text = "Ra";
+            this.lblRa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
             // 
@@ -311,15 +316,62 @@
             this.lblOU.Text = "OU";
             this.lblOU.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblBeforeCursor
+            // 
+            this.lblBeforeCursor.AutoSize = true;
+            this.lblBeforeCursor.BackColor = System.Drawing.Color.Maroon;
+            this.lblBeforeCursor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblBeforeCursor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBeforeCursor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.lblBeforeCursor.Location = new System.Drawing.Point(649, 580);
+            this.lblBeforeCursor.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblBeforeCursor.Name = "lblBeforeCursor";
+            this.lblBeforeCursor.Size = new System.Drawing.Size(30, 30);
+            this.lblBeforeCursor.TabIndex = 25;
+            this.lblBeforeCursor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSelectionStart
+            // 
+            this.lblSelectionStart.AutoSize = true;
+            this.lblSelectionStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSelectionStart.Location = new System.Drawing.Point(573, 585);
+            this.lblSelectionStart.Name = "lblSelectionStart";
+            this.lblSelectionStart.Size = new System.Drawing.Size(19, 21);
+            this.lblSelectionStart.TabIndex = 26;
+            this.lblSelectionStart.Text = "0";
+            // 
+            // txtFontSize
+            // 
+            this.txtFontSize.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtFontSize.Location = new System.Drawing.Point(624, 501);
+            this.txtFontSize.Name = "txtFontSize";
+            this.txtFontSize.Size = new System.Drawing.Size(55, 33);
+            this.txtFontSize.TabIndex = 27;
+            this.txtFontSize.TextChanged += new System.EventHandler(this.txtFontSize_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(530, 504);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 25);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Font Size";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 634);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtFontSize);
+            this.Controls.Add(this.lblSelectionStart);
+            this.Controls.Add(this.lblBeforeCursor);
             this.Controls.Add(this.lblOU);
             this.Controls.Add(this.lblO);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.lblR);
+            this.Controls.Add(this.lblRa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblOI);
             this.Controls.Add(this.lblE);
@@ -363,9 +415,13 @@
         private Label label5;
         private Label lblOI;
         private Label lblE;
-        private Label lblR;
+        private Label lblRa;
         private Label label6;
         private Label lblO;
         private Label lblOU;
+        private Label lblBeforeCursor;
+        private Label lblSelectionStart;
+        private TextBox txtFontSize;
+        private Label label7;
     }
 }
