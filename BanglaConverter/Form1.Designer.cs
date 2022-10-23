@@ -45,7 +45,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblOI = new System.Windows.Forms.Label();
             this.lblE = new System.Windows.Forms.Label();
-            this.lblR = new System.Windows.Forms.Label();
+            this.lblRa = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblO = new System.Windows.Forms.Label();
             this.lblOU = new System.Windows.Forms.Label();
@@ -265,18 +265,18 @@
             this.lblE.Text = "E";
             this.lblE.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblR
+            // lblRa
             // 
-            this.lblR.AutoSize = true;
-            this.lblR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblR.Location = new System.Drawing.Point(58, 501);
-            this.lblR.MinimumSize = new System.Drawing.Size(30, 30);
-            this.lblR.Name = "lblR";
-            this.lblR.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.lblR.Size = new System.Drawing.Size(30, 30);
-            this.lblR.TabIndex = 21;
-            this.lblR.Text = "R";
-            this.lblR.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblRa.AutoSize = true;
+            this.lblRa.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRa.Location = new System.Drawing.Point(58, 501);
+            this.lblRa.MinimumSize = new System.Drawing.Size(30, 30);
+            this.lblRa.Name = "lblRa";
+            this.lblRa.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.lblRa.Size = new System.Drawing.Size(30, 30);
+            this.lblRa.TabIndex = 21;
+            this.lblRa.Text = "Ra";
+            this.lblRa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
             // 
@@ -371,7 +371,7 @@
             this.Controls.Add(this.lblOU);
             this.Controls.Add(this.lblO);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.lblR);
+            this.Controls.Add(this.lblRa);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblOI);
             this.Controls.Add(this.lblE);
@@ -415,7 +415,7 @@
         private Label label5;
         private Label lblOI;
         private Label lblE;
-        private Label lblR;
+        private Label lblRa;
         private Label label6;
         private Label lblO;
         private Label lblOU;

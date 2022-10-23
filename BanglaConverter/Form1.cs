@@ -63,7 +63,7 @@ namespace BanglaConverter
             bool firstVowelActive = false, aActive = false,
                 shortIActive = false, longIActive = false,
                 shortUActive = false, longUActive = false,
-                rActive = false, riActive = false,
+                raActive = false, riActive = false,
                 eActive = false, oiActive = false,
                 oActive = false, ouActive = false;
 
@@ -95,7 +95,7 @@ namespace BanglaConverter
                 }
                 else if (letter == BanglaUnicodeData.CodePoint.Ra)
                 {
-                    rActive = true;
+                    raActive = true;
                 }
                 else if (letter == BanglaUnicodeData.CodePoint.RI || letter == BanglaUnicodeData.CodePoint.RIKar)
                 {
@@ -125,7 +125,7 @@ namespace BanglaConverter
             lblLongI.Visible = longIActive;
             lblShortU.Visible = shortUActive;
             lblLongU.Visible = longUActive;
-            lblR.Visible = rActive;
+            lblRa.Visible = raActive;
             lblRI.Visible = riActive;
             lblE.Visible = eActive;
             lblOI.Visible = oiActive;
@@ -175,7 +175,7 @@ namespace BanglaConverter
                 lblO.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OKar);
                 lblOU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OUKar);
             }
-            lblR.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.Ra);
+            lblRa.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.Ra);
         }
 
         private void DisplayLanguageMode()
