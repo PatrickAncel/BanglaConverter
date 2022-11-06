@@ -6,12 +6,14 @@ In the future, this program will allow mapping custom keys and key combinations 
 
 ## Vowels
 
+|         |         |         |         |         |         |         |         |         |         |         |
+| :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | &#2437; | &#2438; | &#2439; | &#2440; | &#2441; | &#2442; | &#2443; | &#2447; | &#2448; | &#2451; | &#2452; |
-| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>A</kbd> | <kbd>A</kbd> | <kbd>I</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>I</kbd> | <kbd>U</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>U</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>R</kbd> | <kbd>E</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>E</kbd> | <kbd>O</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>O</kbd> |
 
 ## Diacritics
 
-| &#2434; | &#2435; | &#2433; | 
-| ------- | ------- | ------- |
-| <kbd>;</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>;</kbd> | <kbd>`</kbd> | 
+|         |         |         |         |         |
+| :-----: | :-----: | :-----: | :-----: | :-----: |
+| &#2434; | &#2435; | &#2433; | &#2492; | &#2509; | 
+| <kbd>;</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>;</kbd> | <kbd>`</kbd> | <kbd>.</kbd> | <kbd>,</kbd> |
