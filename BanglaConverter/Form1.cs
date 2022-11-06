@@ -66,19 +66,19 @@ namespace BanglaConverter
                 {
                     aActive = true;
                 }
-                else if (letter == BanglaUnicodeData.CodePoint.ShortI || letter == BanglaUnicodeData.CodePoint.ShortIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.HrasvaI || letter == BanglaUnicodeData.CodePoint.HrasvaIKar)
                 {
                     shortIActive = true;
                 }
-                else if (letter == BanglaUnicodeData.CodePoint.LongI || letter == BanglaUnicodeData.CodePoint.LongIKar)
+                else if (letter == BanglaUnicodeData.CodePoint.DirghaI || letter == BanglaUnicodeData.CodePoint.DirghaIKar)
                 {
                     longIActive = true;
                 }
-                else if (letter == BanglaUnicodeData.CodePoint.ShortU || letter == BanglaUnicodeData.CodePoint.ShortUKar)
+                else if (letter == BanglaUnicodeData.CodePoint.HrasvaU || letter == BanglaUnicodeData.CodePoint.HrasvaUKar)
                 {
                     shortUActive = true;
                 }
-                else if (letter == BanglaUnicodeData.CodePoint.LongU || letter == BanglaUnicodeData.CodePoint.LongUKar)
+                else if (letter == BanglaUnicodeData.CodePoint.DirghaU || letter == BanglaUnicodeData.CodePoint.DirghaUKar)
                 {
                     longUActive = true;
                 }
@@ -140,10 +140,10 @@ namespace BanglaConverter
             {
                 lblFirstVowel.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.FirstVowel);
                 lblA.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.A);
-                lblShortI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortI);
-                lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongI);
-                lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortU);
-                lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongU);
+                lblShortI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.HrasvaI);
+                lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.DirghaI);
+                lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.HrasvaU);
+                lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.DirghaU);
                 lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RI);
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.E);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OI);
@@ -154,10 +154,10 @@ namespace BanglaConverter
             {
                 lblFirstVowel.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.Invalid);
                 lblA.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.AKar);
-                lblShortI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortIKar);
-                lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongIKar);
-                lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.ShortUKar);
-                lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.LongUKar);
+                lblShortI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.HrasvaIKar);
+                lblLongI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.DirghaIKar);
+                lblShortU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.HrasvaUKar);
+                lblLongU.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.DirghaUKar);
                 lblRI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.RIKar);
                 lblE.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.EKar);
                 lblOI.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.OIKar);

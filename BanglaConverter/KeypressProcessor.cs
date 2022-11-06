@@ -132,8 +132,8 @@ namespace BanglaConverter
         {
             // There is no vowel sign for the first vowel.
             [Keys.A] = new VowelKey(Keys.A, CodePoint.A, CodePoint.AKar, CodePoint.FirstVowel, CodePoint.Invalid),
-            [Keys.I] = new VowelKey(Keys.I, CodePoint.ShortI, CodePoint.ShortIKar, CodePoint.LongI, CodePoint.LongIKar),
-            [Keys.U] = new VowelKey(Keys.U, CodePoint.ShortU, CodePoint.ShortUKar, CodePoint.LongU, CodePoint.LongUKar),
+            [Keys.I] = new VowelKey(Keys.I, CodePoint.HrasvaI, CodePoint.HrasvaIKar, CodePoint.DirghaI, CodePoint.DirghaIKar),
+            [Keys.U] = new VowelKey(Keys.U, CodePoint.HrasvaU, CodePoint.HrasvaUKar, CodePoint.DirghaU, CodePoint.DirghaUKar),
             // The R key only represents a vowel (RI) when shift is held.
             [Keys.R] = new VowelKey(Keys.R, CodePoint.Invalid, CodePoint.Invalid, CodePoint.RI, CodePoint.RIKar),
             [Keys.E] = new VowelKey(Keys.E, CodePoint.E, CodePoint.EKar, CodePoint.OI, CodePoint.OIKar),
@@ -143,8 +143,8 @@ namespace BanglaConverter
         /// <summary>
         /// Returns the list of active Bangla characters (those that can be typed at the current moment)
         /// based on whether the shift key is held. For example, if shift is held, the returned
-        /// list will include LongI (because typing I while holding shift produces LongI), but if
-        /// shift is not held, the list will include ShortI instead.
+        /// list will include DirghaI (because typing I while holding shift produces DirghaI), but if
+        /// shift is not held, the list will include HrasvaI instead.
         /// </summary>
         public static List<CodePoint> GetActiveBanglaLetters()
         {
@@ -387,11 +387,11 @@ namespace BanglaConverter
             }
             else if (e.KeyCode == Keys.Oemtilde)
             {
-                banglaText = MakeString(CodePoint.Chandrabindu);
+                banglaText = MakeString(CodePoint.Candrabindu);
             }
             else if (e.KeyCode == Keys.Oem1)
             {
-                banglaText = e.Shift ? MakeString(CodePoint.Bisorgo) : MakeString(CodePoint.Anusvar);
+                banglaText = e.Shift ? MakeString(CodePoint.Bisarga) : MakeString(CodePoint.Anusvar);
             }
             else if (e.KeyCode == Keys.OemPeriod)
             {
@@ -513,7 +513,7 @@ namespace BanglaConverter
 
                     if (IsBanglaVowelSign(ch)
                         || ch == (char)((int)CodePoint.Anusvar + CODE_POINT_OFFSET)
-                        || ch == (char)((int)CodePoint.Bisorgo + CODE_POINT_OFFSET))
+                        || ch == (char)((int)CodePoint.Bisarga + CODE_POINT_OFFSET))
                     {
                         canReceiveVowelSign = false;
                         break;
