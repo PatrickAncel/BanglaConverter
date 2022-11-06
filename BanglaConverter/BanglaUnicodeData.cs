@@ -21,10 +21,10 @@ namespace BanglaConverter
             // Full Vowels
             FirstVowel = 0x85,
             A = 0x86,
-            ShortI = 0x87,
-            LongI = 0x88,
-            ShortU = 0x89,
-            LongU = 0x8A,
+            HrasvaI = 0x87,
+            DirghaI = 0x88,
+            HrasvaU = 0x89,
+            DirghaU = 0x8A,
             RI = 0x8B,
             E = 0x8F,
             OI = 0x90,
@@ -32,19 +32,19 @@ namespace BanglaConverter
             OU = 0x94,
             // Vowel Signs
             AKar = 0xBE,
-            ShortIKar = 0xBF,
-            LongIKar = 0xC0,
-            ShortUKar = 0xC1,
-            LongUKar = 0xC2,
+            HrasvaIKar = 0xBF,
+            DirghaIKar = 0xC0,
+            HrasvaUKar = 0xC1,
+            DirghaUKar = 0xC2,
             RIKar = 0xC3,
             EKar = 0xC7,
             OIKar = 0xC8,
             OKar = 0xCB,
             OUKar = 0xCC,
             // Diacritics
-            Chandrabindu = 0x81,
+            Candrabindu = 0x81,
             Anusvar = 0x82,
-            Bisorgo = 0x83,
+            Bisarga = 0x83,
             UnderDot = 0xBC,
             Hosont = 0xCD,
             // Misc.
@@ -177,9 +177,9 @@ namespace BanglaConverter
             // Subtracts the offset from the character's numeric value.
             int codePointValue = ch - CODE_POINT_OFFSET;
 
-            return codePointValue == (int)CodePoint.Chandrabindu
+            return codePointValue == (int)CodePoint.Candrabindu
                 || codePointValue == (int)CodePoint.Anusvar
-                || codePointValue == (int)CodePoint.Bisorgo
+                || codePointValue == (int)CodePoint.Bisarga
                 || codePointValue == (int)CodePoint.UnderDot
                 || codePointValue == (int)CodePoint.Hosont;
         }
