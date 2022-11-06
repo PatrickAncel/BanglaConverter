@@ -17,3 +17,12 @@ In the future, this program will allow mapping custom keys and key combinations 
 | :-----: | :-----: | :-----: | :-----: | :-----: |
 | &#2434; | &#2435; | &#2433; | &#2492; | &#2509; | 
 | <kbd>;</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>;</kbd> | <kbd>`</kbd> | <kbd>.</kbd> | <kbd>,</kbd> |
+
+## Consonants
+
+|         |         |         |         |         |
+| :-----: | :-----: | :-----: | :-----: | :-----: |
+| &#2453; | &#2454; | &#2455; | &#2456; | &#2457; |
+| <kbd>K</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>K</kbd> | <kbd>G</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>G</kbd> | <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>N</kbd> |
+| &#2458; | &#2459; | &#2460; | &#2461; | &#2462; |
+| <kbd>C</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>C</kbd> | <kbd>J</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>J</kbd> | <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>N</kbd> |
