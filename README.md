@@ -1,6 +1,6 @@
 # Bangla Converter
 
-This program is for those of us who are used to English keyboards to type Bangla characters. It converts keypresses and key combinations into their Bangla equivalents. For example, <kbd>K</kbd> produces "ক", and <kbd>Shift</kbd> + <kbd>K</kbd> produces the aspirated version: "খ". This tool is still being developed. Come back later for more features and a complete manual.
+This program is help those used to English keyboards type Bangla characters. It converts key presses and key combinations into their Bangla equivalents. For example, <kbd>K</kbd> produces "ক", and <kbd>Shift</kbd> + <kbd>K</kbd> produces the aspirated version: "খ". This tool is still being developed. Come back later for more features.
 
 In the future, this program will allow mapping custom keys and key combinations to specific characters. For now, here are the keys required to type each Bangla character.
 
@@ -36,4 +36,10 @@ In the future, this program will allow mapping custom keys and key combinations 
 | &#2468; | &#2469; | &#2470; | &#2471; | &#2472; |
 | <kbd>T</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>T</kbd> | <kbd>D</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>D</kbd> | <kbd>N</kbd> |
 | &#2474; | &#2475; | &#2476; | &#2477; | &#2478; |
-| <kbd>P</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>P</kbd> | <kbd>B</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>B</kbd> | <kbd>M</kbd> | 
+| <kbd>P</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>P</kbd> | <kbd>B</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>B</kbd> | <kbd>M</kbd> |
+
+|         |         |         |         |         |         |         |
+| :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
+| &#2479; | &#2480; | &#2482; | &#2486; | &#2487; | &#2488; | &#2489; |
+| <kbd>Y</kbd> | <kbd>R</kbd> | <kbd>L</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>S</kbd> | <kbd>H</kbd> |
+
