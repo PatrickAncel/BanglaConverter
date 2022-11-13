@@ -1,6 +1,6 @@
 # Bangla Converter
 
-This program is help those used to English keyboards type Bangla characters. It converts key presses and key combinations into their Bangla equivalents. For example, <kbd>K</kbd> produces ক, and <kbd>Shift</kbd> + <kbd>K</kbd> produces the aspirated version: খ. This tool is still being developed. Come back later for more features.
+This program is to help those used to English keyboards type Bangla characters. It converts key presses and key combinations into their Bangla equivalents. For example, <kbd>K</kbd> produces ক, and <kbd>Shift</kbd> + <kbd>K</kbd> produces the aspirated version: খ. This tool is still being developed. Come back later for more features.
 
 In the future, this program will allow mapping custom keys and key combinations to specific characters. For now, the tables below show the keys and key combinations required to type each Bangla character.
 
