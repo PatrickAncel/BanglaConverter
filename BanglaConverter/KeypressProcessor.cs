@@ -383,7 +383,7 @@ namespace BanglaConverter
             }
             else if (e.KeyCode == Keys.X)
             {
-                banglaText = MakeString(CodePoint.Ka, CodePoint.Hosont, CodePoint.MurdhonnoSa);
+                banglaText = MakeString(CodePoint.Ka, CodePoint.Hosonto, CodePoint.MurdhonnoSa);
             }
             else if (e.KeyCode == Keys.Oemtilde)
             {
@@ -399,7 +399,7 @@ namespace BanglaConverter
             }
             else if (e.KeyCode == Keys.Oemcomma)
             {
-                banglaText = MakeString(CodePoint.Hosont);
+                banglaText = MakeString(CodePoint.Hosonto);
             }
 
             return banglaText;

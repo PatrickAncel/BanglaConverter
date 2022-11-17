@@ -46,7 +46,7 @@ namespace BanglaConverter
             Anusvar = 0x82,
             Bisarga = 0x83,
             UnderDot = 0xBC,
-            Hosont = 0xCD,
+            Hosonto = 0xCD,
             // Misc.
             KhondoTa = 0xCE,
             BDTaka = 0xF3,
@@ -181,7 +181,7 @@ namespace BanglaConverter
                 || codePointValue == (int)CodePoint.Anusvar
                 || codePointValue == (int)CodePoint.Bisarga
                 || codePointValue == (int)CodePoint.UnderDot
-                || codePointValue == (int)CodePoint.Hosont;
+                || codePointValue == (int)CodePoint.Hosonto;
         }
     }
 }
