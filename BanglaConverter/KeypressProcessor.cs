@@ -381,6 +381,18 @@ namespace BanglaConverter
             {
                 banglaText = MakeString(CodePoint.Ha);
             }
+            else if (e.KeyCode == Keys.F)
+            {
+                banglaText = MakeString(CodePoint.Pha);
+            }
+            else if (e.KeyCode == Keys.V)
+            {
+                banglaText = MakeString(CodePoint.Bha);
+            }
+            else if (e.KeyCode == Keys.Z)
+            {
+                banglaText = MakeString(CodePoint.Ya);
+            }
             else if (e.KeyCode == Keys.X)
             {
                 banglaText = MakeString(CodePoint.Ka, CodePoint.Hosonto, CodePoint.MurdhonnoSa);

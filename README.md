@@ -4,8 +4,8 @@ This program is to help those used to English keyboards type Bangla characters. 
 
 In the future, this program will allow mapping custom keys and key combinations to specific characters. For now, the tables below show the keys and key combinations required to type each Bangla character.
 
-এই প্রোগ্রামটা তাদের জন্য যারা ইংরেজি কিবোর্ডে বাংলা লিখে অভ্যস্ত | এটা কিবোর্ডের কী প্রেস ইনপুট নেয় এবং সেটাকে বাংলা অক্ষরে রুপান্তরিত করে | যেমন "K" অক্ষরটি কিবোর্ডে চাপ দিলে এটা "ক" এবং "Shift + K" চাপলে "খ" লিখবে | এই প্রোগ্রামের কাজ এখনও চলমান | নতুন আপডেট এবং ফিচার সম্পর্কে জানতে নিয়মিত চোখ রাখুন |
-পরবর্তীতে এই প্রোগ্রাম "কাস্টম কী ম্যাপিং"  এবং নির্দিষ্ট অক্ষরের "কী কম্বিনেশনে" সহায়তা করবে | সুবিধার জন্য নিচে একটি টেবিলে প্রতিটি বাংলা অক্ষরের "কী" এবং "কী কম্বিনেশন" দেওয়া হল |
+এই প্রোগ্রামটা তাদের জন্য যারা ইংরেজি কিবোর্ডে বাংলা লিখে অভ্যস্ত । এটা কিবোর্ডের কী প্রেস ইনপুট নেয় এবং সেটাকে বাংলা অক্ষরে রুপান্তরিত করে । যেমন "K" অক্ষরটি কিবোর্ডে চাপ দিলে এটা "ক" এবং "Shift + K" চাপলে "খ" লিখবে । এই প্রোগ্রামের কাজ এখনও চলমান । নতুন আপডেট এবং ফিচার সম্পর্কে জানতে নিয়মিত চোখ রাখুন ।
+পরবর্তীতে এই প্রোগ্রাম "কাস্টম কী ম্যাপিং"  এবং নির্দিষ্ট অক্ষরের "কী কম্বিনেশনে" সহায়তা করবে । সুবিধার জন্য নিচে একটি টেবিলে প্রতিটি বাংলা অক্ষরের "কী" এবং "কী কম্বিনেশন" দেওয়া হল ।
 
 ## Modes
 
@@ -51,16 +51,16 @@ To combine consonants into conjuncts, place a "&#2509;" between them.
 | &#2468; | &#2469; | &#2470; | &#2471; | &#2472; |
 | <kbd>T</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>T</kbd> | <kbd>D</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>D</kbd> | <kbd>N</kbd> |
 | &#2474; | &#2475; | &#2476; | &#2477; | &#2478; |
-| <kbd>P</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>P</kbd> | <kbd>B</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>B</kbd> | <kbd>M</kbd> |
+| <kbd>P</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>P</kbd> or <kbd>F</kbd> | <kbd>B</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>B</kbd> or <kbd>V</kbd> | <kbd>M</kbd> |
 
 |         |         |         |         |         |         |         |
 | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | &#2479; | &#2480; | &#2482; | &#2486; | &#2487; | &#2488; | &#2489; |
-| <kbd>Y</kbd> | <kbd>R</kbd> | <kbd>L</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>S</kbd> | <kbd>H</kbd> |
+| <kbd>Y</kbd> or <kbd>Z</kbd> | <kbd>R</kbd> | <kbd>L</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>S</kbd> | <kbd>S</kbd> | <kbd>H</kbd> |
 
-|         |
-| :-----: |
-| &#2510; |
-| <kbd>Alt</kbd>&nbsp;+&nbsp;<kbd>T</kbd> |
+|         |         |
+| :-----: | :-----: |
+| &#2510; | &#2453;&#2509;&#2487; |
+| <kbd>Alt</kbd>&nbsp;+&nbsp;<kbd>T</kbd> | <kbd>X</kbd>
 
 The letters &#2465;&#2492;, &#2466;&#2492;, and &#2479;&#2492; can be formed by typing &#2465;, &#2466;, or &#2479;, followed by a &#2492; diacritic.
