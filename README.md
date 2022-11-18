@@ -27,13 +27,14 @@ There are two modes within Bangla mode: full-vowel mode and vowel-sign mode. Whi
 
 ## Diacritics
 
-|         |         |         |         |         |
-| :-----: | :-----: | :-----: | :-----: | :-----: |
-| &#2434; | &#2435; | &#2433; | &#2492; | &#2509; | 
-| <kbd>;</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>;</kbd> | <kbd>`</kbd> | <kbd>.</kbd> | <kbd>,</kbd> |
-| semicolon | shift + semicolon | backtick | period | comma |
+|         |         |         |         |         |         |
+| :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
+| &#2434; | &#2435; | &#2433; | &#2492; | &#2509; | &#2404; | 
+| <kbd>;</kbd> | <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>;</kbd> | <kbd>`</kbd> | <kbd>.</kbd> | <kbd>,</kbd> | <kbd>&bsol;</kbd> | 
+| semicolon | shift + semicolon | backtick | period | comma | backslash |
 
-Most of the diacritics are assigned to keys based on their visual similarity to those symbols, not because of the meaning of those symbols.
+
+Most of the diacritics are assigned to keys based on their visual similarity to those symbols, not because of the meaning of those symbols. Additionally, the keys shown above are based on the U.S. keyboard layout. The actual key required to type some symbols may differ from what is in the table.
 
 To combine consonants into conjuncts, place a "&#2509;" between them.
 

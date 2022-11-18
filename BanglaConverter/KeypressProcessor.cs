@@ -401,6 +401,10 @@ namespace BanglaConverter
             {
                 banglaText = MakeString(CodePoint.Hosonto);
             }
+            else if (e.KeyCode == Keys.Oem5)
+            {
+                banglaText = MakeString(CodePoint.Dahri);
+            }
 
             return banglaText;
         }

@@ -48,6 +48,7 @@ namespace BanglaConverter
             UnderDot = 0xBC,
             Hosonto = 0xCD,
             // Misc.
+            Dahri = 0x64, // This character (U+0964) is technically outside of the Bangla Unicode block.
             KhondoTa = 0xCE,
             BDTaka = 0xF3,
             Shunno = 0xE6,
