@@ -46,17 +46,22 @@ namespace BanglaConverter
             Anusvar = 0x82,
             Bisarga = 0x83,
             UnderDot = 0xBC,
-            Hosont = 0xCD,
+            Hosonto = 0xCD,
             // Misc.
+            Dahri = 0x64, // This character (U+0964) is technically outside of the Bangla Unicode block.
             KhondoTa = 0xCE,
             BDTaka = 0xF3,
             Shunno = 0xE6,
             // Consonants
             Ka = 0x95,
+            Kha = 0x96,
             Ga = 0x97,
+            Gha = 0x98,
             Unga = 0x99,
             Ca = 0x9A,
+            Cha = 0x9B,
             Ja = 0x9C,
+            Jha = 0x9D,
             Iya = 0x9E,
             RetroflexTa = 0x9F,
             RetroflexDa = 0xA1,
@@ -65,7 +70,9 @@ namespace BanglaConverter
             DentalDa = 0xA6,
             DentalNa = 0xA8,
             Pa = 0xAA,
+            Pha = 0xAB,
             Ba = 0xAC,
+            Bha = 0xAD,
             Ma = 0xAE,
             Ya = 0xAF,
             Ra = 0xB0,
@@ -181,7 +188,7 @@ namespace BanglaConverter
                 || codePointValue == (int)CodePoint.Anusvar
                 || codePointValue == (int)CodePoint.Bisarga
                 || codePointValue == (int)CodePoint.UnderDot
-                || codePointValue == (int)CodePoint.Hosont;
+                || codePointValue == (int)CodePoint.Hosonto;
         }
     }
 }

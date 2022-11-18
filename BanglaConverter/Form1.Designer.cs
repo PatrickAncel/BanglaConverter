@@ -159,7 +159,7 @@
             this.txtWorkArea.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtWorkArea.Location = new System.Drawing.Point(12, 12);
             this.txtWorkArea.Name = "txtWorkArea";
-            this.txtWorkArea.Size = new System.Drawing.Size(689, 344);
+            this.txtWorkArea.Size = new System.Drawing.Size(690, 350);
             this.txtWorkArea.TabIndex = 11;
             this.txtWorkArea.Text = "";
             this.txtWorkArea.SelectionChanged += new System.EventHandler(this.txtWorkArea_SelectionChanged);
@@ -363,7 +363,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 634);
+            this.ClientSize = new System.Drawing.Size(714, 631);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtFontSize);
             this.Controls.Add(this.lblSelectionStart);
@@ -390,8 +390,10 @@
             this.Controls.Add(this.lblLanguageMode);
             this.Controls.Add(this.lblVowelMode);
             this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(730, 670);
             this.Name = "MainForm";
             this.Text = "Bangla";
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

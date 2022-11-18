@@ -381,9 +381,21 @@ namespace BanglaConverter
             {
                 banglaText = MakeString(CodePoint.Ha);
             }
+            else if (e.KeyCode == Keys.F)
+            {
+                banglaText = MakeString(CodePoint.Pha);
+            }
+            else if (e.KeyCode == Keys.V)
+            {
+                banglaText = MakeString(CodePoint.Bha);
+            }
+            else if (e.KeyCode == Keys.Z)
+            {
+                banglaText = MakeString(CodePoint.Ya);
+            }
             else if (e.KeyCode == Keys.X)
             {
-                banglaText = MakeString(CodePoint.Ka, CodePoint.Hosont, CodePoint.MurdhonnoSa);
+                banglaText = MakeString(CodePoint.Ka, CodePoint.Hosonto, CodePoint.MurdhonnoSa);
             }
             else if (e.KeyCode == Keys.Oemtilde)
             {
@@ -399,7 +411,11 @@ namespace BanglaConverter
             }
             else if (e.KeyCode == Keys.Oemcomma)
             {
-                banglaText = MakeString(CodePoint.Hosont);
+                banglaText = MakeString(CodePoint.Hosonto);
+            }
+            else if (e.KeyCode == Keys.Oem5)
+            {
+                banglaText = MakeString(CodePoint.Dahri);
             }
 
             return banglaText;

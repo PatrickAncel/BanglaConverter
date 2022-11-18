@@ -246,5 +246,11 @@ namespace BanglaConverter
                 txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, newFontSize, txtWorkArea.Font.Style);
             }
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            // The textarea should always be exactly 40 pixels thinner than the form.
+            txtWorkArea.Width = this.Width - 40;
+        }
     }
 }
