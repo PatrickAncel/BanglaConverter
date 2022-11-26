@@ -21,7 +21,7 @@ namespace BanglaConverter
             DisplayVowelMode();
             SetLetterLabels();
 
-            txtFontSize.Text = txtWorkArea.Font.Size.ToString();
+            ApplySettings();
 
             KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
             KeypressProcessor.LanguageModeChangeCallback += HighlightActiveLetters;
@@ -33,6 +33,8 @@ namespace BanglaConverter
             
             KeypressProcessor.DeliverOutput += WriteToWorkArea;
             KeypressProcessor.ReadTextBeforeCursor = ReadTextBeforeCursor;
+
+            SettingsForm.UpdateMainForm = ApplySettings;
         }
 
         private void WriteToWorkArea(string text)
@@ -237,20 +239,34 @@ namespace BanglaConverter
             KeypressProcessor.AutoSetVowelMode();
         }
 
-        private void txtFontSize_TextChanged(object sender, EventArgs e)
-        {
-            // Tries to parse the text into a float. Also ensures the float is positive.
-            if (float.TryParse(txtFontSize.Text, out float newFontSize) && newFontSize > 0)
-            {
-                // Sets the new font size.
-                txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, newFontSize, txtWorkArea.Font.Style);
-            }
-        }
-
         private void MainForm_Resize(object sender, EventArgs e)
         {
             // The textarea should always be exactly 40 pixels thinner than the form.
             txtWorkArea.Width = this.Width - 40;
+        }
+
+        private void btnOpenSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Reads new settings from the SettingsManager and applies them to the form elements.
+        /// </summary>
+        private void ApplySettings()
+        {
+            // Reads the current settings.
+            Color textColor = (Color)SettingsManager.GetSetting(SettingsManager.Setting.TextColor);
+            Color backgroundColor = (Color)SettingsManager.GetSetting(SettingsManager.Setting.BackgroundColor);
+            Color formColor = (Color)SettingsManager.GetSetting(SettingsManager.Setting.FormColor);
+            float fontSize = (float)SettingsManager.GetSetting(SettingsManager.Setting.FontSize);
+
+            txtWorkArea.ForeColor = textColor;
+            txtWorkArea.BackColor = backgroundColor;
+            this.BackColor = formColor;
+            txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, fontSize, txtWorkArea.Font.Style);
+
         }
     }
 }

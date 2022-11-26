@@ -51,8 +51,7 @@
             this.lblOU = new System.Windows.Forms.Label();
             this.lblBeforeCursor = new System.Windows.Forms.Label();
             this.lblSelectionStart = new System.Windows.Forms.Label();
-            this.txtFontSize = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnOpenSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblVowelMode
@@ -323,49 +322,42 @@
             this.lblBeforeCursor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblBeforeCursor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblBeforeCursor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
-            this.lblBeforeCursor.Location = new System.Drawing.Point(649, 580);
+            this.lblBeforeCursor.Location = new System.Drawing.Point(306, 576);
             this.lblBeforeCursor.MinimumSize = new System.Drawing.Size(30, 30);
             this.lblBeforeCursor.Name = "lblBeforeCursor";
             this.lblBeforeCursor.Size = new System.Drawing.Size(30, 30);
             this.lblBeforeCursor.TabIndex = 25;
             this.lblBeforeCursor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBeforeCursor.Visible = false;
             // 
             // lblSelectionStart
             // 
             this.lblSelectionStart.AutoSize = true;
             this.lblSelectionStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectionStart.Location = new System.Drawing.Point(573, 585);
+            this.lblSelectionStart.Location = new System.Drawing.Point(230, 581);
             this.lblSelectionStart.Name = "lblSelectionStart";
             this.lblSelectionStart.Size = new System.Drawing.Size(19, 21);
             this.lblSelectionStart.TabIndex = 26;
             this.lblSelectionStart.Text = "0";
+            this.lblSelectionStart.Visible = false;
             // 
-            // txtFontSize
+            // btnOpenSettings
             // 
-            this.txtFontSize.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtFontSize.Location = new System.Drawing.Point(624, 501);
-            this.txtFontSize.Name = "txtFontSize";
-            this.txtFontSize.Size = new System.Drawing.Size(55, 33);
-            this.txtFontSize.TabIndex = 27;
-            this.txtFontSize.TextChanged += new System.EventHandler(this.txtFontSize_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(530, 504);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 25);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Font Size";
+            this.btnOpenSettings.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOpenSettings.Location = new System.Drawing.Point(594, 562);
+            this.btnOpenSettings.Name = "btnOpenSettings";
+            this.btnOpenSettings.Size = new System.Drawing.Size(85, 48);
+            this.btnOpenSettings.TabIndex = 29;
+            this.btnOpenSettings.Text = "Settings";
+            this.btnOpenSettings.UseVisualStyleBackColor = true;
+            this.btnOpenSettings.Click += new System.EventHandler(this.btnOpenSettings_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 631);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtFontSize);
+            this.Controls.Add(this.btnOpenSettings);
             this.Controls.Add(this.lblSelectionStart);
             this.Controls.Add(this.lblBeforeCursor);
             this.Controls.Add(this.lblOU);
@@ -423,7 +415,6 @@
         private Label lblOU;
         private Label lblBeforeCursor;
         private Label lblSelectionStart;
-        private TextBox txtFontSize;
-        private Label label7;
+        private Button btnOpenSettings;
     }
 }

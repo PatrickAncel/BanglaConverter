@@ -74,10 +74,9 @@ namespace BanglaConverter
             return (CurrentKeyModifiers | keyModifier) == CurrentKeyModifiers;
         }
 
-        internal delegate void UICallback();
-        internal static UICallback LanguageModeChangeCallback { get; set; } = () => { };
-        internal static UICallback VowelModeChangeCallback { get; set; } = () => { };
-        internal static UICallback KeyModifiersChangeCallback { get; set; } = () => { };
+        internal static SharedData.UICallback LanguageModeChangeCallback { get; set; } = () => { };
+        internal static SharedData.UICallback VowelModeChangeCallback { get; set; } = () => { };
+        internal static SharedData.UICallback KeyModifiersChangeCallback { get; set; } = () => { };
 
         internal delegate void UIOutputDeliverer(string output);
         /// <summary>
