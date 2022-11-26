@@ -15,20 +15,33 @@ namespace BanglaConverter
 
         internal static SharedData.UICallback UpdateMainForm { get; set; } = () => { };
 
-        private Dictionary<string, Color> selectableColors = new Dictionary<string, Color>
+        private Dictionary<string, Color> selectableTextColors = new Dictionary<string, Color>
         {
             ["Black"] = SystemColors.WindowText,
-            ["White"] = Color.White,
-            ["Red"] = Color.Red,
-            ["Green"] = Color.Green,
+            ["White"] = Color.FromArgb(255, 245, 245, 240),
+            ["Dark Red"] = Color.DarkRed,
             ["Blue"] = Color.Blue
+        };
+
+        private Dictionary<string, Color> selectableBackgroundColors = new Dictionary<string, Color>
+        {
+            ["White"] = SystemColors.Window,
+            ["Black"] = Color.FromArgb(255, 25, 25, 30),
+            ["Tan"] = Color.Tan
+        };
+
+        private Dictionary<string, Color> selectableFormColors = new Dictionary<string, Color>
+        {
+            ["Light"] = SystemColors.Control,
+            ["Dark"] = Color.FromArgb(255, 20, 20, 25),
+            ["Blue"] = Color.MidnightBlue
         };
 
         /// <summary>
         /// Adds a color to the dictionary if it is not already there.
         /// </summary>
         /// <param name="color"></param>
-        private void AddToDictionaryIfMissing(Color color)
+        private void AddToDictionaryIfMissing(Dictionary<string,Color> selectableColors, Color color)
         {
             // Checks if the color is absent from the dictionary.
             if (!selectableColors.ContainsValue(color))
@@ -80,31 +93,34 @@ namespace BanglaConverter
             Color initialFormColor = (Color)SettingsManager.GetSetting(SettingsManager.Setting.FormColor);
 
             // If any color is not found in the selectable colors, it is added.
-            AddToDictionaryIfMissing(initialTextColor);
-            AddToDictionaryIfMissing(initialBackgroundColor);
-            AddToDictionaryIfMissing(initialFormColor);
+            AddToDictionaryIfMissing(selectableTextColors, initialTextColor);
+            AddToDictionaryIfMissing(selectableBackgroundColors, initialBackgroundColor);
+            AddToDictionaryIfMissing(selectableFormColors, initialFormColor);
 
             // Clears the combo boxes so that nothing extraneous resides in them.
             cboTextColor.Items.Clear();
             cboBackgroundColor.Items.Clear();
             cboFormColor.Items.Clear();
 
-            string[] colorNames = selectableColors.Keys.ToArray();
+            string[] textColorNames = selectableTextColors.Keys.ToArray();
+            string[] backgroundColorNames = selectableBackgroundColors.Keys.ToArray();
+            string[] formColorNames = selectableFormColors.Keys.ToArray();
+
 
             // Adds the names of the selectable colors to the combo boxes.
-            cboTextColor.Items.AddRange(colorNames);
-            cboBackgroundColor.Items.AddRange(colorNames);
-            cboFormColor.Items.AddRange(colorNames);
+            cboTextColor.Items.AddRange(textColorNames);
+            cboBackgroundColor.Items.AddRange(backgroundColorNames);
+            cboFormColor.Items.AddRange(formColorNames);
 
             // Finds the dictionary key of each initial color.
-            string initialTextColorName = selectableColors.FirstOrDefault(x => x.Value == initialTextColor).Key;
-            string initialBackgroundColorName = selectableColors.FirstOrDefault(x => x.Value == initialBackgroundColor).Key;
-            string initialFormColorName = selectableColors.FirstOrDefault(x => x.Value == initialFormColor).Key;
+            string initialTextColorName = selectableTextColors.FirstOrDefault(x => x.Value == initialTextColor).Key;
+            string initialBackgroundColorName = selectableBackgroundColors.FirstOrDefault(x => x.Value == initialBackgroundColor).Key;
+            string initialFormColorName = selectableFormColors.FirstOrDefault(x => x.Value == initialFormColor).Key;
 
             // Sets the initial values as the selected values.
-            cboTextColor.SelectedIndex = GetIndex(colorNames, initialTextColorName);
-            cboBackgroundColor.SelectedIndex = GetIndex(colorNames, initialBackgroundColorName);
-            cboFormColor.SelectedIndex = GetIndex(colorNames, initialFormColorName);
+            cboTextColor.SelectedIndex = GetIndex(textColorNames, initialTextColorName);
+            cboBackgroundColor.SelectedIndex = GetIndex(backgroundColorNames, initialBackgroundColorName);
+            cboFormColor.SelectedIndex = GetIndex(formColorNames, initialFormColorName);
         }
 
         public SettingsForm()
@@ -142,9 +158,9 @@ namespace BanglaConverter
                 return;
             }
             // Updates the settings.
-            SettingsManager.SetSetting(SettingsManager.Setting.TextColor, selectableColors[(string)cboTextColor.SelectedItem]);
-            SettingsManager.SetSetting(SettingsManager.Setting.BackgroundColor, selectableColors[(string)cboBackgroundColor.SelectedItem]);
-            SettingsManager.SetSetting(SettingsManager.Setting.FormColor, selectableColors[(string)cboFormColor.SelectedItem]);
+            SettingsManager.SetSetting(SettingsManager.Setting.TextColor, selectableTextColors[(string)cboTextColor.SelectedItem]);
+            SettingsManager.SetSetting(SettingsManager.Setting.BackgroundColor, selectableBackgroundColors[(string)cboBackgroundColor.SelectedItem]);
+            SettingsManager.SetSetting(SettingsManager.Setting.FormColor, selectableFormColors[(string)cboFormColor.SelectedItem]);
             SettingsManager.SetSetting(SettingsManager.Setting.FontSize, (float)numFontSize.Value);
             // Updates the main form with the new settings.
             UpdateMainForm();

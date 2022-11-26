@@ -14,11 +14,10 @@ namespace BanglaConverter
         public MainForm()
         {
             InitializeComponent();
+
             DisplayVowelMode();
             DisplayLanguageMode();
             HighlightActiveLetters();
-
-            DisplayVowelMode();
             SetLetterLabels();
 
             ApplySettings();
@@ -259,8 +258,19 @@ namespace BanglaConverter
             txtWorkArea.ForeColor = textColor;
             txtWorkArea.BackColor = backgroundColor;
             this.BackColor = formColor;
+            menuStrip1.BackColor = formColor;
             txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, fontSize, txtWorkArea.Font.Style);
 
+            bool formIsDark = formColor.GetBrightness() < 0.4;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is Label || control is MenuStrip)
+                {
+                    // Selects a text color to contrast with the background.
+                    control.ForeColor = formIsDark ? Color.WhiteSmoke : SystemColors.ControlText;
+                }
+            }
         }
 
         private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
