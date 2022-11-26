@@ -245,12 +245,6 @@ namespace BanglaConverter
             txtWorkArea.Width = this.Width - 40;
         }
 
-        private void btnOpenSettings_Click(object sender, EventArgs e)
-        {
-            SettingsForm settingsForm = new SettingsForm();
-            settingsForm.ShowDialog();
-        }
-
         /// <summary>
         /// Reads new settings from the SettingsManager and applies them to the form elements.
         /// </summary>
@@ -267,6 +261,12 @@ namespace BanglaConverter
             this.BackColor = formColor;
             txtWorkArea.Font = new Font(txtWorkArea.Font.FontFamily, fontSize, txtWorkArea.Font.Style);
 
+        }
+
+        private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
     }
 }
