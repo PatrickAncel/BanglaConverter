@@ -1,6 +1,6 @@
 namespace BanglaConverter
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, ITextEditor
     {
 
         /// <summary>
@@ -11,34 +11,65 @@ namespace BanglaConverter
                 .MakeString(BanglaUnicodeData.CodePoint.Ba, BanglaUnicodeData.CodePoint.AKar, BanglaUnicodeData.CodePoint.Anusvar,
                     BanglaUnicodeData.CodePoint.La, BanglaUnicodeData.CodePoint.AKar);
 
+        private readonly KeypressProcessor keypressProcessor;
+
+        public void ConverterToggleHandler(bool enabled)
+        {
+            if (enabled)
+            {
+                lblLanguageMode.Text = "Bangla Converter On";
+                this.Text = banglaInBangla;
+            }
+            else
+            {
+                lblLanguageMode.Text = "Bangla Converter Off";
+                this.Text = "Bangla";
+            }
+
+            HighlightActiveLetters();
+        }
+
+        public void VowelModeChangeHandler(SharedData.VowelMode vowelMode)
+        {
+            DisplayVowelMode();
+            SetLetterLabels();
+        }
+
+        public void ProcessorStateChangeHandler()
+        {
+            HighlightActiveLetters();
+        }
+
+        public void WriteText(string text)
+        {
+            txtWorkArea.SelectedText = text;
+        }
+
+        public string CurrentText
+        {
+            get
+            {
+                return txtWorkArea.Text;
+            }
+        }
+
+        public int CurrentPosition
+        {
+            get
+            {
+                return txtWorkArea.SelectionStart;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
 
-            DisplayVowelMode();
-            DisplayLanguageMode();
-            HighlightActiveLetters();
-            SetLetterLabels();
+            keypressProcessor = new KeypressProcessor(this);
 
             ApplySettings();
 
-            KeypressProcessor.LanguageModeChangeCallback += DisplayLanguageMode;
-            KeypressProcessor.LanguageModeChangeCallback += HighlightActiveLetters;
-
-            KeypressProcessor.VowelModeChangeCallback += DisplayVowelMode;
-            KeypressProcessor.VowelModeChangeCallback += SetLetterLabels;
-
-            KeypressProcessor.KeyModifiersChangeCallback += HighlightActiveLetters;
-            
-            KeypressProcessor.DeliverOutput += WriteToWorkArea;
-            KeypressProcessor.ReadTextBeforeCursor = ReadTextBeforeCursor;
-
             SettingsForm.UpdateMainForm = ApplySettings;
-        }
-
-        private void WriteToWorkArea(string text)
-        {
-            txtWorkArea.SelectedText = text;
         }
 
         /// <summary>
@@ -48,7 +79,7 @@ namespace BanglaConverter
         private void HighlightActiveLetters()
         {
             // Gets the list of letters to highlight.
-            List<BanglaUnicodeData.CodePoint> activeLetters = KeypressProcessor.GetActiveBanglaLetters();
+            List<BanglaUnicodeData.CodePoint> activeLetters = keypressProcessor.GetActiveBanglaLetters();
 
             bool firstVowelActive = false, aActive = false,
                 shortIActive = false, longIActive = false,
@@ -125,11 +156,11 @@ namespace BanglaConverter
 
         private void DisplayVowelMode()
         {
-            if (KeypressProcessor.CurrentVowelMode == KeypressProcessor.VowelMode.FullVowel)
+            if (keypressProcessor.CurrentVowelMode == SharedData.VowelMode.FullVowel)
             {
                 lblVowelMode.Text = "Full Vowel Mode";
             }
-            else if (KeypressProcessor.CurrentVowelMode == KeypressProcessor.VowelMode.VowelSign)
+            else if (keypressProcessor.CurrentVowelMode == SharedData.VowelMode.VowelSign)
             {
                 lblVowelMode.Text = "Vowel Sign Mode";
             }
@@ -137,7 +168,7 @@ namespace BanglaConverter
 
         private void SetLetterLabels()
         {
-            if (KeypressProcessor.CurrentVowelMode == KeypressProcessor.VowelMode.FullVowel)
+            if (keypressProcessor.CurrentVowelMode == SharedData.VowelMode.FullVowel)
             {
                 lblFirstVowel.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.FirstVowel);
                 lblA.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.A);
@@ -168,74 +199,34 @@ namespace BanglaConverter
             lblRa.Text = BanglaUnicodeData.MakeString(BanglaUnicodeData.CodePoint.Ra);
         }
 
-        private void DisplayLanguageMode()
-        {
-            if (KeypressProcessor.CurrentLanguageMode == KeypressProcessor.LanguageMode.Bangla)
-            {
-                lblLanguageMode.Text = "Bangla Mode";
-                this.Text = banglaInBangla;
-            }
-            else if (KeypressProcessor.CurrentLanguageMode == KeypressProcessor.LanguageMode.English)
-            {
-                lblLanguageMode.Text = "English Mode";
-                this.Text = "English";
-            }    
-        }
-
-        /// <summary>
-        /// Reads the text immediately before the cursor or selection area.
-        /// Continues reading all text until reaching any character that is not
-        /// a Bangla vowel-sign or diacritic.
-        /// </summary>
-        private string ReadTextBeforeCursor()
-        {
-
-            lblSelectionStart.Text = txtWorkArea.SelectionStart.ToString();
-
-            // Starts at the character directly before the cursor / selection area.
-            int index = txtWorkArea.SelectionStart - 1;
-            string text = "";
-
-            // Keep going as long as the index is valid.
-            while (index >= 0)
-            {
-                // Read the character at the index.
-                char ch = txtWorkArea.Text[index];
-
-                // Add the character to the front of the text.
-                text = ch + text;
-
-                // If the character is anything other than a Bangla vowel-sign or diacritic,
-                // break out of the loop.
-                if (!BanglaUnicodeData.IsBanglaVowelSign(ch) && !BanglaUnicodeData.IsBanglaDiacritic(ch))
-                {
-                    break;
-                }
-
-                // Move to the previous character.
-                index--;
-            }
-
-            // Displays the text in the label.
-            lblBeforeCursor.Text = text;
-
-            return text;
-        }
-
         private void txtWorkArea_KeyUp(object sender, KeyEventArgs e)
         {
-            KeypressProcessor.KeyUpHandler(e);
+            if (keypressProcessor.ConverterEnabled)
+            {
+                e.SuppressKeyPress = true;
+            }
+            keypressProcessor.InputEventHandler(SharedData.InputEventType.KeyUp, e.KeyCode.ToString());
         }
 
         private void txtWorkArea_KeyDown(object sender, KeyEventArgs e)
         {
-            KeypressProcessor.KeyDownHandler(e);
+            // If the key combination is Ctrl + C, Ctrl + V, Ctrl + X, or Ctrl + A, do nothing.
+            if (e.Control && !e.Shift && !e.Alt && (e.KeyCode == Keys.C || e.KeyCode == Keys.V || e.KeyCode == Keys.X || e.KeyCode == Keys.A))
+            {
+                return;
+            }
+            // Otherwise, if the converter is enabled, suppress the input to prevent default behavior.
+            else if (keypressProcessor.ConverterEnabled)
+            {
+                e.SuppressKeyPress = true;
+            }
+            keypressProcessor.InputEventHandler(SharedData.InputEventType.KeyDown, e.KeyCode.ToString());
         }
 
         private void txtWorkArea_SelectionChanged(object sender, EventArgs e)
         {
             // The KeypressProcessor must set the vowel mode according to the position of the new selection.
-            KeypressProcessor.AutoSetVowelMode();
+            keypressProcessor.AutoSetVowelMode();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)

@@ -71,7 +71,7 @@
             // 
             this.lblLanguageMode.AutoSize = true;
             this.lblLanguageMode.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLanguageMode.Location = new System.Drawing.Point(530, 496);
+            this.lblLanguageMode.Location = new System.Drawing.Point(530, 430);
             this.lblLanguageMode.Name = "lblLanguageMode";
             this.lblLanguageMode.Size = new System.Drawing.Size(149, 25);
             this.lblLanguageMode.TabIndex = 2;
