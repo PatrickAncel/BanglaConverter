@@ -16,12 +16,6 @@ namespace BanglaConverter
         internal InputEventProcessor(ITextEditor editor)
         {
             this.editor = editor;
-
-            // Calls the event handlers to Inform the document
-            // of the processor's initial state.
-            editor.ConverterToggleHandler(ConverterEnabled);
-            editor.VowelModeChangeHandler(CurrentVowelMode);
-            editor.ProcessorStateChangeHandler();
         }
 
         /// <summary>

@@ -67,6 +67,12 @@ namespace BanglaConverter
 
             keypressProcessor = new KeypressProcessor(this);
 
+            // Calls the event handlers to respond to the
+            // keypress processor's initial state.
+            ConverterToggleHandler(keypressProcessor.ConverterEnabled);
+            VowelModeChangeHandler(keypressProcessor.CurrentVowelMode);
+            ProcessorStateChangeHandler();
+
             ApplySettings();
 
             SettingsForm.UpdateMainForm = ApplySettings;
