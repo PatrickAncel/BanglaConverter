@@ -10,7 +10,7 @@ namespace BanglaConverter
     internal class KeypressProcessor : InputEventProcessor
     {
 
-        public KeypressProcessor(ITextEditor document) : base (document)
+        public KeypressProcessor(ITextEditor document) : base(document)
         {
 
         }
@@ -22,8 +22,8 @@ namespace BanglaConverter
             public readonly CodePoint StandardVowelSign;
             public readonly CodePoint ShiftFullVowel;
             public readonly CodePoint ShiftVowelSign;
-            
-            public VowelKey (string keyboardKeyName, CodePoint standardFullVowel, CodePoint standardVowelSign,
+
+            public VowelKey(string keyboardKeyName, CodePoint standardFullVowel, CodePoint standardVowelSign,
                 CodePoint shiftFullVowel, CodePoint shiftVowelSign)
             {
                 KeyboardKeyName = keyboardKeyName;
@@ -92,7 +92,7 @@ namespace BanglaConverter
                 {
                     activeLetters.Add(CodePoint.Ra);
                 }
-                
+
             }
 
             return activeLetters;
@@ -121,13 +121,37 @@ namespace BanglaConverter
         /// Indicates whether a key or key combination was pressed that represents a pair of consonants in
         /// which the aspirated version is one code point after the unaspirated version.
         /// </summary>
-        /// <returns></returns>
         private static bool KeyWasAspirableConsonant(string keyName)
         {
             return keyName == "K" || keyName == "G"
                 || keyName == "C" || keyName == "J"
                 || keyName == "T" || keyName == "D"
                 || keyName == "P" || keyName == "B";
+        }
+
+        /// <summary>
+        /// Indicates whether a key or key combination was pressed that represents a numeral.
+        /// </summary>
+        private bool KeyWasNumeral(string keyName)
+        {
+            //System.Diagnostics.Debug.WriteLine(keyName);
+
+            // Checks if a standard numeral key was pressed, but it does not count if shift is held.
+            bool wasStandardNumeral = !ShiftKeyActive
+                // Checks if the key pressed was D0, D1, D2, ..., or D9. 
+                && (keyName != null
+                    && keyName.Length == 2
+                    && keyName[0] == 'D'
+                    && '0' <= keyName[1] && keyName[1] <= '9');
+
+            // Checks if a num pad numeral key was pressed. It does not matter if shift is held.
+            // The num pad numeral keys are NumPad0, NumPad1, NumPad2, ..., and NumPad9.
+            bool wasNumPadNumeral = keyName != null
+                && keyName.Length == 7
+                && keyName.StartsWith("NumPad")
+                && '0' <= keyName[6] && keyName[6] <= '9';
+
+            return wasStandardNumeral || wasNumPadNumeral;
         }
 
         private string GetAppropriateAspirableConsonant(string keyName)
@@ -247,6 +271,27 @@ namespace BanglaConverter
         }
 
         /// <summary>
+        /// Gets the appropriate Bangla numeral character based on the key pressed.
+        /// </summary>
+        /// <param name="keyName"></param>
+        /// <returns></returns>
+        private string GetAppropriateNumeral(string keyName)
+        {
+            // The numeral (as a char) is indicated by the last character of the key name.
+            char numeralAsChar = keyName[^1];
+
+            // The offset of the ASCII zero character is subtracted from the char
+            // to get the actual numeric value that it represents.
+            int numberValue = (int)(numeralAsChar - '0');
+
+            // The Unicode code point for the Bangla numeral 0 is added as an offset to the
+            // numeric value to get the code point of the Bangla numeral.
+            string banglaChar = "" + (char)(CODE_POINT_OFFSET + CodePoint.Shunno + numberValue);
+
+            return banglaChar;
+        }
+
+        /// <summary>
         /// Converts key event data into a Bangla character, according to the
         /// current vowel mode (if applicable) and key modifiers.
         /// </summary>
@@ -266,6 +311,10 @@ namespace BanglaConverter
             else if (KeyWasAspirableConsonant(keyName))
             {
                 banglaText = GetAppropriateAspirableConsonant(keyName);
+            }
+            else if (KeyWasNumeral(keyName))
+            {
+                banglaText = GetAppropriateNumeral(keyName);
             }
             else
             {
